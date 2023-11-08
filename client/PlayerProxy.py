@@ -1,4 +1,4 @@
-from ..proto import player_pb2
+from ..include import Classes_pb2
 from UDPClient import socket
 
 class proxy:
