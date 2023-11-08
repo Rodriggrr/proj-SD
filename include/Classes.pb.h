@@ -29,6 +29,9 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/map.h>  // IWYU pragma: export
+#include <google/protobuf/map_entry.h>
+#include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 #define PROTOBUF_INTERNAL_EXPORT_protobuf_Classes_2eproto 
@@ -38,33 +41,65 @@ namespace protobuf_Classes_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[3];
+  static const ::google::protobuf::internal::ParseTable schema[5];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
 };
 void AddDescriptors();
 }  // namespace protobuf_Classes_2eproto
+namespace Gerenciador {
 class Atleta;
 class AtletaDefaultTypeInternal;
 extern AtletaDefaultTypeInternal _Atleta_default_instance_;
+class Message;
+class MessageDefaultTypeInternal;
+extern MessageDefaultTypeInternal _Message_default_instance_;
 class Time;
 class TimeDefaultTypeInternal;
 extern TimeDefaultTypeInternal _Time_default_instance_;
+class Time_AtletasEntry_DoNotUse;
+class Time_AtletasEntry_DoNotUseDefaultTypeInternal;
+extern Time_AtletasEntry_DoNotUseDefaultTypeInternal _Time_AtletasEntry_DoNotUse_default_instance_;
 class Time_Tecnico;
 class Time_TecnicoDefaultTypeInternal;
 extern Time_TecnicoDefaultTypeInternal _Time_Tecnico_default_instance_;
+}  // namespace Gerenciador
 namespace google {
 namespace protobuf {
-template<> ::Atleta* Arena::CreateMaybeMessage<::Atleta>(Arena*);
-template<> ::Time* Arena::CreateMaybeMessage<::Time>(Arena*);
-template<> ::Time_Tecnico* Arena::CreateMaybeMessage<::Time_Tecnico>(Arena*);
+template<> ::Gerenciador::Atleta* Arena::CreateMaybeMessage<::Gerenciador::Atleta>(Arena*);
+template<> ::Gerenciador::Message* Arena::CreateMaybeMessage<::Gerenciador::Message>(Arena*);
+template<> ::Gerenciador::Time* Arena::CreateMaybeMessage<::Gerenciador::Time>(Arena*);
+template<> ::Gerenciador::Time_AtletasEntry_DoNotUse* Arena::CreateMaybeMessage<::Gerenciador::Time_AtletasEntry_DoNotUse>(Arena*);
+template<> ::Gerenciador::Time_Tecnico* Arena::CreateMaybeMessage<::Gerenciador::Time_Tecnico>(Arena*);
 }  // namespace protobuf
 }  // namespace google
+namespace Gerenciador {
 
 // ===================================================================
 
-class Time_Tecnico : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Time.Tecnico) */ {
+class Time_AtletasEntry_DoNotUse : public ::google::protobuf::internal::MapEntry<Time_AtletasEntry_DoNotUse, 
+    ::std::string, ::Gerenciador::Atleta,
+    ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+    ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
+    0 > {
+public:
+  typedef ::google::protobuf::internal::MapEntry<Time_AtletasEntry_DoNotUse, 
+    ::std::string, ::Gerenciador::Atleta,
+    ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+    ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
+    0 > SuperType;
+  Time_AtletasEntry_DoNotUse();
+  Time_AtletasEntry_DoNotUse(::google::protobuf::Arena* arena);
+  void MergeFrom(const Time_AtletasEntry_DoNotUse& other);
+  static const Time_AtletasEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const Time_AtletasEntry_DoNotUse*>(&_Time_AtletasEntry_DoNotUse_default_instance_); }
+  void MergeFrom(const ::google::protobuf::Message& other) final;
+  ::google::protobuf::Metadata GetMetadata() const;
+};
+
+// -------------------------------------------------------------------
+
+class Time_Tecnico : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Gerenciador.Time.Tecnico) */ {
  public:
   Time_Tecnico();
   virtual ~Time_Tecnico();
@@ -99,7 +134,7 @@ class Time_Tecnico : public ::google::protobuf::Message /* @@protoc_insertion_po
                &_Time_Tecnico_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    1;
 
   void Swap(Time_Tecnico* other);
   friend void swap(Time_Tecnico& a, Time_Tecnico& b) {
@@ -177,7 +212,7 @@ class Time_Tecnico : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::google::protobuf::int32 qtdtitulos() const;
   void set_qtdtitulos(::google::protobuf::int32 value);
 
-  // @@protoc_insertion_point(class_scope:Time.Tecnico)
+  // @@protoc_insertion_point(class_scope:Gerenciador.Time.Tecnico)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
@@ -189,7 +224,7 @@ class Time_Tecnico : public ::google::protobuf::Message /* @@protoc_insertion_po
 };
 // -------------------------------------------------------------------
 
-class Time : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Time) */ {
+class Time : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Gerenciador.Time) */ {
  public:
   Time();
   virtual ~Time();
@@ -224,7 +259,7 @@ class Time : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
                &_Time_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   void Swap(Time* other);
   friend void swap(Time& a, Time& b) {
@@ -278,6 +313,15 @@ class Time : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
 
   // accessors -------------------------------------------------------
 
+  // map<string, .Gerenciador.Atleta> atletas = 5;
+  int atletas_size() const;
+  void clear_atletas();
+  static const int kAtletasFieldNumber = 5;
+  const ::google::protobuf::Map< ::std::string, ::Gerenciador::Atleta >&
+      atletas() const;
+  ::google::protobuf::Map< ::std::string, ::Gerenciador::Atleta >*
+      mutable_atletas();
+
   // string nome = 1;
   void clear_nome();
   static const int kNomeFieldNumber = 1;
@@ -318,10 +362,16 @@ class Time : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
   ::google::protobuf::int32 qtdjogos() const;
   void set_qtdjogos(::google::protobuf::int32 value);
 
-  // @@protoc_insertion_point(class_scope:Time)
+  // @@protoc_insertion_point(class_scope:Gerenciador.Time)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::MapField<
+      Time_AtletasEntry_DoNotUse,
+      ::std::string, ::Gerenciador::Atleta,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
+      0 > atletas_;
   ::google::protobuf::internal::ArenaStringPtr nome_;
   ::google::protobuf::internal::ArenaStringPtr tecnico_;
   ::google::protobuf::int32 pontos_;
@@ -331,7 +381,7 @@ class Time : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
 };
 // -------------------------------------------------------------------
 
-class Atleta : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Atleta) */ {
+class Atleta : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Gerenciador.Atleta) */ {
  public:
   Atleta();
   virtual ~Atleta();
@@ -366,7 +416,7 @@ class Atleta : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
                &_Atleta_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   void Swap(Atleta* other);
   friend void swap(Atleta& a, Atleta& b) {
@@ -446,6 +496,20 @@ class Atleta : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::std::string* release_posicao();
   void set_allocated_posicao(::std::string* posicao);
 
+  // string time = 5;
+  void clear_time();
+  static const int kTimeFieldNumber = 5;
+  const ::std::string& time() const;
+  void set_time(const ::std::string& value);
+  #if LANG_CXX11
+  void set_time(::std::string&& value);
+  #endif
+  void set_time(const char* value);
+  void set_time(const char* value, size_t size);
+  ::std::string* mutable_time();
+  ::std::string* release_time();
+  void set_allocated_time(::std::string* time);
+
   // int32 numCamisa = 3;
   void clear_numcamisa();
   static const int kNumCamisaFieldNumber = 3;
@@ -458,14 +522,170 @@ class Atleta : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::google::protobuf::int32 qtdtitulos() const;
   void set_qtdtitulos(::google::protobuf::int32 value);
 
-  // @@protoc_insertion_point(class_scope:Atleta)
+  // @@protoc_insertion_point(class_scope:Gerenciador.Atleta)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr nome_;
   ::google::protobuf::internal::ArenaStringPtr posicao_;
+  ::google::protobuf::internal::ArenaStringPtr time_;
   ::google::protobuf::int32 numcamisa_;
   ::google::protobuf::int32 qtdtitulos_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_Classes_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class Message : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Gerenciador.Message) */ {
+ public:
+  Message();
+  virtual ~Message();
+
+  Message(const Message& from);
+
+  inline Message& operator=(const Message& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Message(Message&& from) noexcept
+    : Message() {
+    *this = ::std::move(from);
+  }
+
+  inline Message& operator=(Message&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Message& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Message* internal_default_instance() {
+    return reinterpret_cast<const Message*>(
+               &_Message_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  void Swap(Message* other);
+  friend void swap(Message& a, Message& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Message* New() const final {
+    return CreateMaybeMessage<Message>(NULL);
+  }
+
+  Message* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Message>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const Message& from);
+  void MergeFrom(const Message& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Message* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string objRef = 3;
+  void clear_objref();
+  static const int kObjRefFieldNumber = 3;
+  const ::std::string& objref() const;
+  void set_objref(const ::std::string& value);
+  #if LANG_CXX11
+  void set_objref(::std::string&& value);
+  #endif
+  void set_objref(const char* value);
+  void set_objref(const char* value, size_t size);
+  ::std::string* mutable_objref();
+  ::std::string* release_objref();
+  void set_allocated_objref(::std::string* objref);
+
+  // string methodID = 4;
+  void clear_methodid();
+  static const int kMethodIDFieldNumber = 4;
+  const ::std::string& methodid() const;
+  void set_methodid(const ::std::string& value);
+  #if LANG_CXX11
+  void set_methodid(::std::string&& value);
+  #endif
+  void set_methodid(const char* value);
+  void set_methodid(const char* value, size_t size);
+  ::std::string* mutable_methodid();
+  ::std::string* release_methodid();
+  void set_allocated_methodid(::std::string* methodid);
+
+  // bytes args = 5;
+  void clear_args();
+  static const int kArgsFieldNumber = 5;
+  const ::std::string& args() const;
+  void set_args(const ::std::string& value);
+  #if LANG_CXX11
+  void set_args(::std::string&& value);
+  #endif
+  void set_args(const char* value);
+  void set_args(const void* value, size_t size);
+  ::std::string* mutable_args();
+  ::std::string* release_args();
+  void set_allocated_args(::std::string* args);
+
+  // int32 type = 1;
+  void clear_type();
+  static const int kTypeFieldNumber = 1;
+  ::google::protobuf::int32 type() const;
+  void set_type(::google::protobuf::int32 value);
+
+  // int32 id = 2;
+  void clear_id();
+  static const int kIdFieldNumber = 2;
+  ::google::protobuf::int32 id() const;
+  void set_id(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:Gerenciador.Message)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr objref_;
+  ::google::protobuf::internal::ArenaStringPtr methodid_;
+  ::google::protobuf::internal::ArenaStringPtr args_;
+  ::google::protobuf::int32 type_;
+  ::google::protobuf::int32 id_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_Classes_2eproto::TableStruct;
 };
@@ -478,6 +698,8 @@ class Atleta : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // Time_Tecnico
 
 // string nome = 1;
@@ -485,41 +707,41 @@ inline void Time_Tecnico::clear_nome() {
   nome_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline const ::std::string& Time_Tecnico::nome() const {
-  // @@protoc_insertion_point(field_get:Time.Tecnico.nome)
+  // @@protoc_insertion_point(field_get:Gerenciador.Time.Tecnico.nome)
   return nome_.GetNoArena();
 }
 inline void Time_Tecnico::set_nome(const ::std::string& value) {
   
   nome_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:Time.Tecnico.nome)
+  // @@protoc_insertion_point(field_set:Gerenciador.Time.Tecnico.nome)
 }
 #if LANG_CXX11
 inline void Time_Tecnico::set_nome(::std::string&& value) {
   
   nome_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:Time.Tecnico.nome)
+  // @@protoc_insertion_point(field_set_rvalue:Gerenciador.Time.Tecnico.nome)
 }
 #endif
 inline void Time_Tecnico::set_nome(const char* value) {
   GOOGLE_DCHECK(value != NULL);
   
   nome_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:Time.Tecnico.nome)
+  // @@protoc_insertion_point(field_set_char:Gerenciador.Time.Tecnico.nome)
 }
 inline void Time_Tecnico::set_nome(const char* value, size_t size) {
   
   nome_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:Time.Tecnico.nome)
+  // @@protoc_insertion_point(field_set_pointer:Gerenciador.Time.Tecnico.nome)
 }
 inline ::std::string* Time_Tecnico::mutable_nome() {
   
-  // @@protoc_insertion_point(field_mutable:Time.Tecnico.nome)
+  // @@protoc_insertion_point(field_mutable:Gerenciador.Time.Tecnico.nome)
   return nome_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* Time_Tecnico::release_nome() {
-  // @@protoc_insertion_point(field_release:Time.Tecnico.nome)
+  // @@protoc_insertion_point(field_release:Gerenciador.Time.Tecnico.nome)
   
   return nome_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -530,7 +752,7 @@ inline void Time_Tecnico::set_allocated_nome(::std::string* nome) {
     
   }
   nome_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), nome);
-  // @@protoc_insertion_point(field_set_allocated:Time.Tecnico.nome)
+  // @@protoc_insertion_point(field_set_allocated:Gerenciador.Time.Tecnico.nome)
 }
 
 // int32 idade = 2;
@@ -538,13 +760,13 @@ inline void Time_Tecnico::clear_idade() {
   idade_ = 0;
 }
 inline ::google::protobuf::int32 Time_Tecnico::idade() const {
-  // @@protoc_insertion_point(field_get:Time.Tecnico.idade)
+  // @@protoc_insertion_point(field_get:Gerenciador.Time.Tecnico.idade)
   return idade_;
 }
 inline void Time_Tecnico::set_idade(::google::protobuf::int32 value) {
   
   idade_ = value;
-  // @@protoc_insertion_point(field_set:Time.Tecnico.idade)
+  // @@protoc_insertion_point(field_set:Gerenciador.Time.Tecnico.idade)
 }
 
 // int32 qtdTitulos = 3;
@@ -552,13 +774,13 @@ inline void Time_Tecnico::clear_qtdtitulos() {
   qtdtitulos_ = 0;
 }
 inline ::google::protobuf::int32 Time_Tecnico::qtdtitulos() const {
-  // @@protoc_insertion_point(field_get:Time.Tecnico.qtdTitulos)
+  // @@protoc_insertion_point(field_get:Gerenciador.Time.Tecnico.qtdTitulos)
   return qtdtitulos_;
 }
 inline void Time_Tecnico::set_qtdtitulos(::google::protobuf::int32 value) {
   
   qtdtitulos_ = value;
-  // @@protoc_insertion_point(field_set:Time.Tecnico.qtdTitulos)
+  // @@protoc_insertion_point(field_set:Gerenciador.Time.Tecnico.qtdTitulos)
 }
 
 // -------------------------------------------------------------------
@@ -570,41 +792,41 @@ inline void Time::clear_nome() {
   nome_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline const ::std::string& Time::nome() const {
-  // @@protoc_insertion_point(field_get:Time.nome)
+  // @@protoc_insertion_point(field_get:Gerenciador.Time.nome)
   return nome_.GetNoArena();
 }
 inline void Time::set_nome(const ::std::string& value) {
   
   nome_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:Time.nome)
+  // @@protoc_insertion_point(field_set:Gerenciador.Time.nome)
 }
 #if LANG_CXX11
 inline void Time::set_nome(::std::string&& value) {
   
   nome_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:Time.nome)
+  // @@protoc_insertion_point(field_set_rvalue:Gerenciador.Time.nome)
 }
 #endif
 inline void Time::set_nome(const char* value) {
   GOOGLE_DCHECK(value != NULL);
   
   nome_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:Time.nome)
+  // @@protoc_insertion_point(field_set_char:Gerenciador.Time.nome)
 }
 inline void Time::set_nome(const char* value, size_t size) {
   
   nome_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:Time.nome)
+  // @@protoc_insertion_point(field_set_pointer:Gerenciador.Time.nome)
 }
 inline ::std::string* Time::mutable_nome() {
   
-  // @@protoc_insertion_point(field_mutable:Time.nome)
+  // @@protoc_insertion_point(field_mutable:Gerenciador.Time.nome)
   return nome_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* Time::release_nome() {
-  // @@protoc_insertion_point(field_release:Time.nome)
+  // @@protoc_insertion_point(field_release:Gerenciador.Time.nome)
   
   return nome_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -615,7 +837,7 @@ inline void Time::set_allocated_nome(::std::string* nome) {
     
   }
   nome_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), nome);
-  // @@protoc_insertion_point(field_set_allocated:Time.nome)
+  // @@protoc_insertion_point(field_set_allocated:Gerenciador.Time.nome)
 }
 
 // string tecnico = 2;
@@ -623,41 +845,41 @@ inline void Time::clear_tecnico() {
   tecnico_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline const ::std::string& Time::tecnico() const {
-  // @@protoc_insertion_point(field_get:Time.tecnico)
+  // @@protoc_insertion_point(field_get:Gerenciador.Time.tecnico)
   return tecnico_.GetNoArena();
 }
 inline void Time::set_tecnico(const ::std::string& value) {
   
   tecnico_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:Time.tecnico)
+  // @@protoc_insertion_point(field_set:Gerenciador.Time.tecnico)
 }
 #if LANG_CXX11
 inline void Time::set_tecnico(::std::string&& value) {
   
   tecnico_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:Time.tecnico)
+  // @@protoc_insertion_point(field_set_rvalue:Gerenciador.Time.tecnico)
 }
 #endif
 inline void Time::set_tecnico(const char* value) {
   GOOGLE_DCHECK(value != NULL);
   
   tecnico_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:Time.tecnico)
+  // @@protoc_insertion_point(field_set_char:Gerenciador.Time.tecnico)
 }
 inline void Time::set_tecnico(const char* value, size_t size) {
   
   tecnico_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:Time.tecnico)
+  // @@protoc_insertion_point(field_set_pointer:Gerenciador.Time.tecnico)
 }
 inline ::std::string* Time::mutable_tecnico() {
   
-  // @@protoc_insertion_point(field_mutable:Time.tecnico)
+  // @@protoc_insertion_point(field_mutable:Gerenciador.Time.tecnico)
   return tecnico_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* Time::release_tecnico() {
-  // @@protoc_insertion_point(field_release:Time.tecnico)
+  // @@protoc_insertion_point(field_release:Gerenciador.Time.tecnico)
   
   return tecnico_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -668,7 +890,7 @@ inline void Time::set_allocated_tecnico(::std::string* tecnico) {
     
   }
   tecnico_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), tecnico);
-  // @@protoc_insertion_point(field_set_allocated:Time.tecnico)
+  // @@protoc_insertion_point(field_set_allocated:Gerenciador.Time.tecnico)
 }
 
 // int32 pontos = 3;
@@ -676,13 +898,13 @@ inline void Time::clear_pontos() {
   pontos_ = 0;
 }
 inline ::google::protobuf::int32 Time::pontos() const {
-  // @@protoc_insertion_point(field_get:Time.pontos)
+  // @@protoc_insertion_point(field_get:Gerenciador.Time.pontos)
   return pontos_;
 }
 inline void Time::set_pontos(::google::protobuf::int32 value) {
   
   pontos_ = value;
-  // @@protoc_insertion_point(field_set:Time.pontos)
+  // @@protoc_insertion_point(field_set:Gerenciador.Time.pontos)
 }
 
 // int32 qtdJogos = 4;
@@ -690,13 +912,31 @@ inline void Time::clear_qtdjogos() {
   qtdjogos_ = 0;
 }
 inline ::google::protobuf::int32 Time::qtdjogos() const {
-  // @@protoc_insertion_point(field_get:Time.qtdJogos)
+  // @@protoc_insertion_point(field_get:Gerenciador.Time.qtdJogos)
   return qtdjogos_;
 }
 inline void Time::set_qtdjogos(::google::protobuf::int32 value) {
   
   qtdjogos_ = value;
-  // @@protoc_insertion_point(field_set:Time.qtdJogos)
+  // @@protoc_insertion_point(field_set:Gerenciador.Time.qtdJogos)
+}
+
+// map<string, .Gerenciador.Atleta> atletas = 5;
+inline int Time::atletas_size() const {
+  return atletas_.size();
+}
+inline void Time::clear_atletas() {
+  atletas_.Clear();
+}
+inline const ::google::protobuf::Map< ::std::string, ::Gerenciador::Atleta >&
+Time::atletas() const {
+  // @@protoc_insertion_point(field_map:Gerenciador.Time.atletas)
+  return atletas_.GetMap();
+}
+inline ::google::protobuf::Map< ::std::string, ::Gerenciador::Atleta >*
+Time::mutable_atletas() {
+  // @@protoc_insertion_point(field_mutable_map:Gerenciador.Time.atletas)
+  return atletas_.MutableMap();
 }
 
 // -------------------------------------------------------------------
@@ -708,41 +948,41 @@ inline void Atleta::clear_nome() {
   nome_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline const ::std::string& Atleta::nome() const {
-  // @@protoc_insertion_point(field_get:Atleta.nome)
+  // @@protoc_insertion_point(field_get:Gerenciador.Atleta.nome)
   return nome_.GetNoArena();
 }
 inline void Atleta::set_nome(const ::std::string& value) {
   
   nome_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:Atleta.nome)
+  // @@protoc_insertion_point(field_set:Gerenciador.Atleta.nome)
 }
 #if LANG_CXX11
 inline void Atleta::set_nome(::std::string&& value) {
   
   nome_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:Atleta.nome)
+  // @@protoc_insertion_point(field_set_rvalue:Gerenciador.Atleta.nome)
 }
 #endif
 inline void Atleta::set_nome(const char* value) {
   GOOGLE_DCHECK(value != NULL);
   
   nome_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:Atleta.nome)
+  // @@protoc_insertion_point(field_set_char:Gerenciador.Atleta.nome)
 }
 inline void Atleta::set_nome(const char* value, size_t size) {
   
   nome_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:Atleta.nome)
+  // @@protoc_insertion_point(field_set_pointer:Gerenciador.Atleta.nome)
 }
 inline ::std::string* Atleta::mutable_nome() {
   
-  // @@protoc_insertion_point(field_mutable:Atleta.nome)
+  // @@protoc_insertion_point(field_mutable:Gerenciador.Atleta.nome)
   return nome_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* Atleta::release_nome() {
-  // @@protoc_insertion_point(field_release:Atleta.nome)
+  // @@protoc_insertion_point(field_release:Gerenciador.Atleta.nome)
   
   return nome_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -753,7 +993,7 @@ inline void Atleta::set_allocated_nome(::std::string* nome) {
     
   }
   nome_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), nome);
-  // @@protoc_insertion_point(field_set_allocated:Atleta.nome)
+  // @@protoc_insertion_point(field_set_allocated:Gerenciador.Atleta.nome)
 }
 
 // string posicao = 2;
@@ -761,41 +1001,41 @@ inline void Atleta::clear_posicao() {
   posicao_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline const ::std::string& Atleta::posicao() const {
-  // @@protoc_insertion_point(field_get:Atleta.posicao)
+  // @@protoc_insertion_point(field_get:Gerenciador.Atleta.posicao)
   return posicao_.GetNoArena();
 }
 inline void Atleta::set_posicao(const ::std::string& value) {
   
   posicao_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:Atleta.posicao)
+  // @@protoc_insertion_point(field_set:Gerenciador.Atleta.posicao)
 }
 #if LANG_CXX11
 inline void Atleta::set_posicao(::std::string&& value) {
   
   posicao_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:Atleta.posicao)
+  // @@protoc_insertion_point(field_set_rvalue:Gerenciador.Atleta.posicao)
 }
 #endif
 inline void Atleta::set_posicao(const char* value) {
   GOOGLE_DCHECK(value != NULL);
   
   posicao_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:Atleta.posicao)
+  // @@protoc_insertion_point(field_set_char:Gerenciador.Atleta.posicao)
 }
 inline void Atleta::set_posicao(const char* value, size_t size) {
   
   posicao_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:Atleta.posicao)
+  // @@protoc_insertion_point(field_set_pointer:Gerenciador.Atleta.posicao)
 }
 inline ::std::string* Atleta::mutable_posicao() {
   
-  // @@protoc_insertion_point(field_mutable:Atleta.posicao)
+  // @@protoc_insertion_point(field_mutable:Gerenciador.Atleta.posicao)
   return posicao_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* Atleta::release_posicao() {
-  // @@protoc_insertion_point(field_release:Atleta.posicao)
+  // @@protoc_insertion_point(field_release:Gerenciador.Atleta.posicao)
   
   return posicao_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -806,7 +1046,7 @@ inline void Atleta::set_allocated_posicao(::std::string* posicao) {
     
   }
   posicao_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), posicao);
-  // @@protoc_insertion_point(field_set_allocated:Atleta.posicao)
+  // @@protoc_insertion_point(field_set_allocated:Gerenciador.Atleta.posicao)
 }
 
 // int32 numCamisa = 3;
@@ -814,13 +1054,13 @@ inline void Atleta::clear_numcamisa() {
   numcamisa_ = 0;
 }
 inline ::google::protobuf::int32 Atleta::numcamisa() const {
-  // @@protoc_insertion_point(field_get:Atleta.numCamisa)
+  // @@protoc_insertion_point(field_get:Gerenciador.Atleta.numCamisa)
   return numcamisa_;
 }
 inline void Atleta::set_numcamisa(::google::protobuf::int32 value) {
   
   numcamisa_ = value;
-  // @@protoc_insertion_point(field_set:Atleta.numCamisa)
+  // @@protoc_insertion_point(field_set:Gerenciador.Atleta.numCamisa)
 }
 
 // int32 qtdTitulos = 4;
@@ -828,13 +1068,257 @@ inline void Atleta::clear_qtdtitulos() {
   qtdtitulos_ = 0;
 }
 inline ::google::protobuf::int32 Atleta::qtdtitulos() const {
-  // @@protoc_insertion_point(field_get:Atleta.qtdTitulos)
+  // @@protoc_insertion_point(field_get:Gerenciador.Atleta.qtdTitulos)
   return qtdtitulos_;
 }
 inline void Atleta::set_qtdtitulos(::google::protobuf::int32 value) {
   
   qtdtitulos_ = value;
-  // @@protoc_insertion_point(field_set:Atleta.qtdTitulos)
+  // @@protoc_insertion_point(field_set:Gerenciador.Atleta.qtdTitulos)
+}
+
+// string time = 5;
+inline void Atleta::clear_time() {
+  time_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Atleta::time() const {
+  // @@protoc_insertion_point(field_get:Gerenciador.Atleta.time)
+  return time_.GetNoArena();
+}
+inline void Atleta::set_time(const ::std::string& value) {
+  
+  time_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:Gerenciador.Atleta.time)
+}
+#if LANG_CXX11
+inline void Atleta::set_time(::std::string&& value) {
+  
+  time_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:Gerenciador.Atleta.time)
+}
+#endif
+inline void Atleta::set_time(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  time_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:Gerenciador.Atleta.time)
+}
+inline void Atleta::set_time(const char* value, size_t size) {
+  
+  time_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:Gerenciador.Atleta.time)
+}
+inline ::std::string* Atleta::mutable_time() {
+  
+  // @@protoc_insertion_point(field_mutable:Gerenciador.Atleta.time)
+  return time_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Atleta::release_time() {
+  // @@protoc_insertion_point(field_release:Gerenciador.Atleta.time)
+  
+  return time_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Atleta::set_allocated_time(::std::string* time) {
+  if (time != NULL) {
+    
+  } else {
+    
+  }
+  time_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), time);
+  // @@protoc_insertion_point(field_set_allocated:Gerenciador.Atleta.time)
+}
+
+// -------------------------------------------------------------------
+
+// Message
+
+// int32 type = 1;
+inline void Message::clear_type() {
+  type_ = 0;
+}
+inline ::google::protobuf::int32 Message::type() const {
+  // @@protoc_insertion_point(field_get:Gerenciador.Message.type)
+  return type_;
+}
+inline void Message::set_type(::google::protobuf::int32 value) {
+  
+  type_ = value;
+  // @@protoc_insertion_point(field_set:Gerenciador.Message.type)
+}
+
+// int32 id = 2;
+inline void Message::clear_id() {
+  id_ = 0;
+}
+inline ::google::protobuf::int32 Message::id() const {
+  // @@protoc_insertion_point(field_get:Gerenciador.Message.id)
+  return id_;
+}
+inline void Message::set_id(::google::protobuf::int32 value) {
+  
+  id_ = value;
+  // @@protoc_insertion_point(field_set:Gerenciador.Message.id)
+}
+
+// string objRef = 3;
+inline void Message::clear_objref() {
+  objref_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Message::objref() const {
+  // @@protoc_insertion_point(field_get:Gerenciador.Message.objRef)
+  return objref_.GetNoArena();
+}
+inline void Message::set_objref(const ::std::string& value) {
+  
+  objref_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:Gerenciador.Message.objRef)
+}
+#if LANG_CXX11
+inline void Message::set_objref(::std::string&& value) {
+  
+  objref_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:Gerenciador.Message.objRef)
+}
+#endif
+inline void Message::set_objref(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  objref_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:Gerenciador.Message.objRef)
+}
+inline void Message::set_objref(const char* value, size_t size) {
+  
+  objref_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:Gerenciador.Message.objRef)
+}
+inline ::std::string* Message::mutable_objref() {
+  
+  // @@protoc_insertion_point(field_mutable:Gerenciador.Message.objRef)
+  return objref_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Message::release_objref() {
+  // @@protoc_insertion_point(field_release:Gerenciador.Message.objRef)
+  
+  return objref_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Message::set_allocated_objref(::std::string* objref) {
+  if (objref != NULL) {
+    
+  } else {
+    
+  }
+  objref_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), objref);
+  // @@protoc_insertion_point(field_set_allocated:Gerenciador.Message.objRef)
+}
+
+// string methodID = 4;
+inline void Message::clear_methodid() {
+  methodid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Message::methodid() const {
+  // @@protoc_insertion_point(field_get:Gerenciador.Message.methodID)
+  return methodid_.GetNoArena();
+}
+inline void Message::set_methodid(const ::std::string& value) {
+  
+  methodid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:Gerenciador.Message.methodID)
+}
+#if LANG_CXX11
+inline void Message::set_methodid(::std::string&& value) {
+  
+  methodid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:Gerenciador.Message.methodID)
+}
+#endif
+inline void Message::set_methodid(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  methodid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:Gerenciador.Message.methodID)
+}
+inline void Message::set_methodid(const char* value, size_t size) {
+  
+  methodid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:Gerenciador.Message.methodID)
+}
+inline ::std::string* Message::mutable_methodid() {
+  
+  // @@protoc_insertion_point(field_mutable:Gerenciador.Message.methodID)
+  return methodid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Message::release_methodid() {
+  // @@protoc_insertion_point(field_release:Gerenciador.Message.methodID)
+  
+  return methodid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Message::set_allocated_methodid(::std::string* methodid) {
+  if (methodid != NULL) {
+    
+  } else {
+    
+  }
+  methodid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), methodid);
+  // @@protoc_insertion_point(field_set_allocated:Gerenciador.Message.methodID)
+}
+
+// bytes args = 5;
+inline void Message::clear_args() {
+  args_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Message::args() const {
+  // @@protoc_insertion_point(field_get:Gerenciador.Message.args)
+  return args_.GetNoArena();
+}
+inline void Message::set_args(const ::std::string& value) {
+  
+  args_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:Gerenciador.Message.args)
+}
+#if LANG_CXX11
+inline void Message::set_args(::std::string&& value) {
+  
+  args_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:Gerenciador.Message.args)
+}
+#endif
+inline void Message::set_args(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  args_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:Gerenciador.Message.args)
+}
+inline void Message::set_args(const void* value, size_t size) {
+  
+  args_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:Gerenciador.Message.args)
+}
+inline ::std::string* Message::mutable_args() {
+  
+  // @@protoc_insertion_point(field_mutable:Gerenciador.Message.args)
+  return args_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Message::release_args() {
+  // @@protoc_insertion_point(field_release:Gerenciador.Message.args)
+  
+  return args_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Message::set_allocated_args(::std::string* args) {
+  if (args != NULL) {
+    
+  } else {
+    
+  }
+  args_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), args);
+  // @@protoc_insertion_point(field_set_allocated:Gerenciador.Message.args)
 }
 
 #ifdef __GNUC__
@@ -844,9 +1328,14 @@ inline void Atleta::set_qtdtitulos(::google::protobuf::int32 value) {
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
+}  // namespace Gerenciador
 
 // @@protoc_insertion_point(global_scope)
 

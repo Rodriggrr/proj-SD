@@ -1,10 +1,13 @@
 syntax = "proto3";
 
+package Gerenciador;
+
 message Time {
     string nome = 1;
     string tecnico = 2;
     int32 pontos = 3;
     int32 qtdJogos = 4;
+    map<string, Atleta> atletas = 5;
 
     message Tecnico {
         string nome = 1;
@@ -18,4 +21,13 @@ message Atleta {
     string posicao = 2;
     int32 numCamisa = 3;
     int32 qtdTitulos = 4;
+    string time = 5;
+}
+
+message Message {
+    int32 type = 1;
+    int32 id = 2;
+    string objRef = 3;
+    string methodID = 4;
+    bytes args = 5;
 }
