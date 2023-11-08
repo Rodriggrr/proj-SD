@@ -11,11 +11,11 @@ class PlayerClient:
 
         if option == "1":
             nome = input("Digite o nome do jogador: ")
-            self.listPlayer(nome)
+            self.getAtleta(nome)
         else:
             print("Opção inválida")
             self.menu()
 
-    def listPlayer(self):
-        self.proxy.listPlayer()
+    def getAtleta(self):
+        self.proxy.getAtleta()
 
