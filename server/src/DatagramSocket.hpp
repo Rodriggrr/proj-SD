@@ -25,11 +25,12 @@ class DatagramSocket {
     sock_t sock;
     sockaddr_in address;
     std::string ip;
+    char buffer[1024];
     int port;
     int timeout;
     int maxConnectionsQueue;
 
-    void bindAndListen() {
+    void bind() {
         sock = socket(AF_INET, SOCK_DGRAM, 0);
         if (sock < 0) {
             throw std::runtime_error("Failed to create socket");
@@ -48,10 +49,6 @@ class DatagramSocket {
             throw std::runtime_error("Failed to bind socket");
         }
 
-        if (listen(sock, maxConnectionsQueue) < 0) {
-            throw std::runtime_error("Failed to listen socket");
-        }
-
     }
 
 public:
@@ -60,7 +57,7 @@ public:
         this->ip = ip;
         this->timeout = timeout;
         this->maxConnectionsQueue = maxConnectionsQueue;
-        bindAndListen();
+        bind();
     }
 
     /**
@@ -81,19 +78,22 @@ public:
      * @param address
      * @param message
     */
-    void sendTo(sockaddr_in& address, std::string& message) {
+    void sendTo(sockaddr_in& address, std::string message) {
         if (sendto(sock, message.c_str(), message.size(), 0, (sockaddr*)&address, sizeof(address)) < 0) {
             throw std::runtime_error("Failed to send message");
         }
     }
 
-    void recvFrom(sockaddr_in& address, std::string& message) {
-        char buffer[1024] = {0};
+    char* recv() {
         socklen_t len = sizeof(address);
         int valread = recvfrom(sock, buffer, 1024, 0, (sockaddr*)&address, &len);
         if (valread < 0) {
             throw std::runtime_error("Failed to receive message");
         }
-        message = std::string(buffer);
+        return buffer;
+    }
+
+    sockaddr_in* getAddress(){
+        return &address;
     }
 };
