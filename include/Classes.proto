@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+message Time {
+    string nome = 1;
+    string tecnico = 2;
+    int32 pontos = 3;
+    int32 qtdJogos = 4;
+
+    message Tecnico {
+        string nome = 1;
+        int32 idade = 2;
+        int32 qtdTitulos = 3;
+    }
+}
+
+message Atleta {
+    string nome = 1;
+    string posicao = 2;
+    int32 numCamisa = 3;
+    int32 qtdTitulos = 4;
+}
