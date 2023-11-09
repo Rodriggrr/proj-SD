@@ -50,6 +50,7 @@ int main(){
             socket.sendTo(*socket.getAddress(), sendMsg.SerializeAsString());
 
         } catch(std::runtime_error& e){
+            std::cout << "Sending error message: " << e.what() << std::endl;
             socket.sendTo(*socket.getAddress(), despachante.empacotaMensagem(message, e.what(), true).SerializeAsString());
         }
     }
