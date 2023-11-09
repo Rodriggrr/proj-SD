@@ -20,8 +20,10 @@ class PlayerClient:
         elif option =="2":
             atleta.nome      = input("Digite o nome do atleta: ")
             atleta.idade     = int(input("Digite a idade do atleta: "))
-            posicao = input("Digite a posição")
-            print ("""
+            
+            posicao = input ("""
+Digite a Posição:
+                             
 1 - Goleiro
 2 - Zagueiro
 3 - Lateral
@@ -29,7 +31,7 @@ class PlayerClient:
 5 - Atacante
 """)
             if posicao == "1":
-                atleta.Posicao.GOLEIRO
+                atleta.posicao = Classes_pb2.Atleta.GOLEIRO
             elif posicao == "2":
                 atleta.Posicao.ZAGUEIRO
             elif posicao == "3":
@@ -38,8 +40,7 @@ class PlayerClient:
                 atleta.Posicao.MEIOCAMPO
             elif posicao == "5":
                 atleta.Posicao.ATACANTE
-
-            atleta.posicao   = input("Digite a posição do atleta: ")
+                
             atleta.numCamisa = int(input("Digite o número da camisa do atleta: "))
             atleta.time = input("Digite o time do atleta: ")
             self.proxy.addAtleta(atleta)

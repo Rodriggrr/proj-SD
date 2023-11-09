@@ -1,4 +1,4 @@
-from Classes_pb2 import *
+import Classes_pb2
 from UDPClient import UDPClient
 
 class Proxy:
@@ -6,14 +6,16 @@ class Proxy:
     
     def getAtleta(self, atleta):
         bytes = self.doOperation(atleta, "getAtleta")
-        atleta = Atleta()
+        atleta = Classes_pb2.Atleta()
         atleta.ParseFromString(bytes)
+        print("Posicao: " + atleta.DESCRIPTOR.enum_types_by_name['Posicao'].values_by_number[atleta.posicao].name)
         print(atleta)
 
     def addAtleta(self, atleta):
         bytes = self.doOperation(atleta, "addAtleta")
-        atleta = Atleta()
+        atleta = Classes_pb2.Atleta()
         atleta.ParseFromString(bytes)
+        print("Posicao: " + atleta.DESCRIPTOR.enum_types_by_name['Posicao'].values_by_number[atleta.posicao].name)
         print(atleta)
         
     def doOperation(self, request, method):
@@ -23,13 +25,13 @@ class Proxy:
         return response
 
     def empacotaMensagem(self, request, method):
-        message = Message()
+        message = Classes_pb2.Message()
         message.methodID = method
         message.args = request.SerializeToString()
         return message.SerializeToString()
     
     def desempacotaMensagem(self, msg):
-        response = Message()
+        response = Classes_pb2.Message()
         response.ParseFromString(msg)
         bytes = response.args
         return bytes
