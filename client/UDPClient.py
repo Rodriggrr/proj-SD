@@ -19,7 +19,12 @@ class UDPClient:
         return UDPClient.socket.recv(1024)
 
     def getResponse(self):
-        response = self._getResponse()
+        errors = 0
+        while errors < 3:
+            try:
+                response = self._getResponse()
+            except Exception as e:
+                errors += 1
         return response
         
             

@@ -55,11 +55,9 @@ atleta = Classes_pb2.Atleta()
 
 def main():
    
-    while true:
+    while True:
         client = PlayerClient()
         client.menu()
         
-
-
 main()
 print("não foi possível conectar ao servidor")
