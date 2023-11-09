@@ -8,17 +8,20 @@ class PlayerClient:
     proxy = Proxy()
 
     def menu(self):
-        print("1 - Listar Jogadores")
+        print("""
+1 - Listar Jogadores
+2 - Adicionar Jogador
+""")
         option = input("Digite a opção desejada: ")
 
         if option == "1":
             atleta.nome = input("Digite o nome do atleta: ")
             self.proxy.getAtleta(atleta)
-        if option =="2":
-            atleta.nome = input("Digite o nome do atleta: ")
-            atleta.idade = input("Digite a idade do atleta: ")
-            atleta.posicao = input("Digite a posição do atleta: ")
-            atleta.numCamisa = input("Digite o número da camisa do atleta: ")
+        elif option =="2":
+            atleta.nome      = input("Digite o nome do atleta: ")
+            atleta.idade     = int(input("Digite a idade do atleta: "))
+            atleta.posicao   = input("Digite a posição do atleta: ")
+            atleta.numCamisa = int(input("Digite o número da camisa do atleta: "))
             atleta.time = input("Digite o time do atleta: ")
             self.proxy.addAtleta(atleta)
         else:

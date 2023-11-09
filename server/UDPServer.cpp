@@ -38,7 +38,6 @@ int main(){
 
     campeonato.addAtleta(atleta.time(), atleta);
 
-
     while(true){
         try{
             Message message;
@@ -48,6 +47,7 @@ int main(){
             Message sendMsg = despachante.invoke(message);
             std::cout << "Sending message: " << sendMsg.DebugString() << std::endl;
             socket.sendTo(*socket.getAddress(), sendMsg.SerializeAsString());
+
         } catch(std::runtime_error& e){
             std::cout << e.what() << std::endl;
         }
