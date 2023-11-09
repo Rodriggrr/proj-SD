@@ -84,13 +84,13 @@ public:
         }
     }
 
-    char* recv() {
+    std::pair<int, char*> recv() {
         socklen_t len = sizeof(address);
         int valread = recvfrom(sock, buffer, 1024, 0, (sockaddr*)&address, &len);
         if (valread < 0) {
             throw std::runtime_error("Failed to receive message");
         }
-        return buffer;
+        return std::make_pair(valread, buffer);
     }
 
     sockaddr_in* getAddress(){

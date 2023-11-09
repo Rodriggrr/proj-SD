@@ -1,30 +1,36 @@
-from ..include import Classes_pb2
-from UDPClient import socket
+from Classes_pb2 import *
+from UDPClient import UDPClient
 
-class proxy:
-    try:
-        socket = socket("localhost", 49110)
-    except:
-        print("Erro ao conectar com o servidor")
+class Proxy:
+    socket = UDPClient("localhost", 49110)
+    
 
     def getAtleta(self, atleta):
-        self.doOperation(atleta, "getAtleta")
+        bytes = self.doOperation(atleta, "getAtleta")
+        atleta = Atleta()
+        atleta.ParseFromString(bytes)
+        print(atleta)
         
     def doOperation(self, request, method):
         msg = self.empacotaMensagem(request, method)
         self.socket.sendRequest(msg)
-        response = self.desempacotaMensagem(self.socket.getResponse()).ParseFromString()
+        response = self.desempacotaMensagem(self.socket.getResponse())
         return response
 
     def empacotaMensagem(self, request, method):
-        args = request.SerializeToString()
-        return args
+        message = Message()
+        message.methodID = method
+        message.args = request.SerializeToString()
+        return message.SerializeToString()
     
     def desempacotaMensagem(self, msg):
-        response = Classes_pb2.Atleta()
+        response = Message()
+        msgSize = response.ByteSize()
+        msgFixed = msg[:msgSize]
         response.ParseFromString(msg)
-        args = response.args()
-        return args
+        bytes = response.args
+
+        return bytes
         
 
 

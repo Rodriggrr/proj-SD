@@ -5,6 +5,7 @@
         "string": "cpp",
         "vector": "cpp",
         "iterator": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "stdexcept": "cpp"
     }
 }

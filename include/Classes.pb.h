@@ -522,6 +522,12 @@ class Atleta : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::google::protobuf::int32 qtdtitulos() const;
   void set_qtdtitulos(::google::protobuf::int32 value);
 
+  // int32 idade = 6;
+  void clear_idade();
+  static const int kIdadeFieldNumber = 6;
+  ::google::protobuf::int32 idade() const;
+  void set_idade(::google::protobuf::int32 value);
+
   // @@protoc_insertion_point(class_scope:Gerenciador.Atleta)
  private:
 
@@ -531,6 +537,7 @@ class Atleta : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::google::protobuf::internal::ArenaStringPtr time_;
   ::google::protobuf::int32 numcamisa_;
   ::google::protobuf::int32 qtdtitulos_;
+  ::google::protobuf::int32 idade_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_Classes_2eproto::TableStruct;
 };
@@ -1128,6 +1135,20 @@ inline void Atleta::set_allocated_time(::std::string* time) {
   }
   time_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), time);
   // @@protoc_insertion_point(field_set_allocated:Gerenciador.Atleta.time)
+}
+
+// int32 idade = 6;
+inline void Atleta::clear_idade() {
+  idade_ = 0;
+}
+inline ::google::protobuf::int32 Atleta::idade() const {
+  // @@protoc_insertion_point(field_get:Gerenciador.Atleta.idade)
+  return idade_;
+}
+inline void Atleta::set_idade(::google::protobuf::int32 value) {
+  
+  idade_ = value;
+  // @@protoc_insertion_point(field_set:Gerenciador.Atleta.idade)
 }
 
 // -------------------------------------------------------------------

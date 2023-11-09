@@ -1,9 +1,11 @@
-from PlayerProxy import proxy
-from ..include import Classes_pb2
+from PlayerProxy import Proxy
+import sys
+
+
+import Classes_pb2
 
 class PlayerClient:
-    def __init__(self):
-        self.proxy = proxy()
+    proxy = Proxy()
 
     def menu(self):
         print("1 - Listar Jogadores")
@@ -11,7 +13,7 @@ class PlayerClient:
 
         if option == "1":
             atleta.nome = input("Digite o nome do atleta: ")
-            proxy.getAtleta(atleta)
+            self.proxy.getAtleta(atleta)
         else:
             print("Opção inválida")
             self.menu()
@@ -19,4 +21,12 @@ class PlayerClient:
     def getAtleta(self):
         self.proxy.getAtleta()
 
-atleta = Classes_pb2.Player()
+atleta = Classes_pb2.Atleta()
+
+def main():
+    choice = ""
+    while choice != "exit":
+        client = PlayerClient()
+        client.menu()
+
+main()

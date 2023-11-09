@@ -8,15 +8,10 @@ class UDPClient:
     def __init__(self, name, port):
         self.name = name
         self.port = port
-        
-    def connect(self, name=name, port=port):
-        status = self.socket.connect((self.name, self.port))
-        if status == 0:
-            print('Connected to {}:{}'.format(self.name, self.port))
 
-    def sendRequest(self, text):
-        self.socket.send(text.encode('utf-8'))
+    def sendRequest(self, bytes):
+        self.socket.sendto(bytes, (self.name, self.port))
 
     def getResponse(self):
-        return self.socket.recv(1024).decode('utf-8')
+        return self.socket.recv(1024)
     

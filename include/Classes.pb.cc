@@ -170,6 +170,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Gerenciador::Atleta, numcamisa_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Gerenciador::Atleta, qtdtitulos_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Gerenciador::Atleta, time_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Gerenciador::Atleta, idade_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Gerenciador::Message, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -186,7 +187,7 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROT
   { 9, -1, sizeof(::Gerenciador::Time_Tecnico)},
   { 17, -1, sizeof(::Gerenciador::Time)},
   { 27, -1, sizeof(::Gerenciador::Atleta)},
-  { 37, -1, sizeof(::Gerenciador::Message)},
+  { 38, -1, sizeof(::Gerenciador::Message)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -225,14 +226,15 @@ void AddDescriptorsImpl() {
       "asEntry\022\013\n\003key\030\001 \001(\t\022\"\n\005value\030\002 \001(\0132\023.Ge"
       "renciador.Atleta:\0028\001\032:\n\007Tecnico\022\014\n\004nome\030"
       "\001 \001(\t\022\r\n\005idade\030\002 \001(\005\022\022\n\nqtdTitulos\030\003 \001(\005"
-      "\"\\\n\006Atleta\022\014\n\004nome\030\001 \001(\t\022\017\n\007posicao\030\002 \001("
+      "\"k\n\006Atleta\022\014\n\004nome\030\001 \001(\t\022\017\n\007posicao\030\002 \001("
       "\t\022\021\n\tnumCamisa\030\003 \001(\005\022\022\n\nqtdTitulos\030\004 \001(\005"
-      "\022\014\n\004time\030\005 \001(\t\"S\n\007Message\022\014\n\004type\030\001 \001(\005\022"
-      "\n\n\002id\030\002 \001(\005\022\016\n\006objRef\030\003 \001(\t\022\020\n\010methodID\030"
-      "\004 \001(\t\022\014\n\004args\030\005 \001(\014b\006proto3"
+      "\022\014\n\004time\030\005 \001(\t\022\r\n\005idade\030\006 \001(\005\"S\n\007Message"
+      "\022\014\n\004type\030\001 \001(\005\022\n\n\002id\030\002 \001(\005\022\016\n\006objRef\030\003 \001"
+      "(\t\022\020\n\010methodID\030\004 \001(\t\022\014\n\004args\030\005 \001(\014b\006prot"
+      "o3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 467);
+      descriptor, 482);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "Classes.proto", &protobuf_RegisterTypes);
 }
@@ -1125,6 +1127,7 @@ const int Atleta::kPosicaoFieldNumber;
 const int Atleta::kNumCamisaFieldNumber;
 const int Atleta::kQtdTitulosFieldNumber;
 const int Atleta::kTimeFieldNumber;
+const int Atleta::kIdadeFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Atleta::Atleta()
@@ -1151,8 +1154,8 @@ Atleta::Atleta(const Atleta& from)
     time_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.time_);
   }
   ::memcpy(&numcamisa_, &from.numcamisa_,
-    static_cast<size_t>(reinterpret_cast<char*>(&qtdtitulos_) -
-    reinterpret_cast<char*>(&numcamisa_)) + sizeof(qtdtitulos_));
+    static_cast<size_t>(reinterpret_cast<char*>(&idade_) -
+    reinterpret_cast<char*>(&numcamisa_)) + sizeof(idade_));
   // @@protoc_insertion_point(copy_constructor:Gerenciador.Atleta)
 }
 
@@ -1161,8 +1164,8 @@ void Atleta::SharedCtor() {
   posicao_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   time_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&numcamisa_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&qtdtitulos_) -
-      reinterpret_cast<char*>(&numcamisa_)) + sizeof(qtdtitulos_));
+      reinterpret_cast<char*>(&idade_) -
+      reinterpret_cast<char*>(&numcamisa_)) + sizeof(idade_));
 }
 
 Atleta::~Atleta() {
@@ -1200,8 +1203,8 @@ void Atleta::Clear() {
   posicao_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   time_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&numcamisa_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&qtdtitulos_) -
-      reinterpret_cast<char*>(&numcamisa_)) + sizeof(qtdtitulos_));
+      reinterpret_cast<char*>(&idade_) -
+      reinterpret_cast<char*>(&numcamisa_)) + sizeof(idade_));
   _internal_metadata_.Clear();
 }
 
@@ -1291,6 +1294,20 @@ bool Atleta::MergePartialFromCodedStream(
         break;
       }
 
+      // int32 idade = 6;
+      case 6: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(48u /* 48 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &idade_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -1357,6 +1374,11 @@ void Atleta::SerializeWithCachedSizes(
       5, this->time(), output);
   }
 
+  // int32 idade = 6;
+  if (this->idade() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->idade(), output);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
@@ -1414,6 +1436,11 @@ void Atleta::SerializeWithCachedSizes(
         5, this->time(), target);
   }
 
+  // int32 idade = 6;
+  if (this->idade() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->idade(), target);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
@@ -1466,6 +1493,13 @@ size_t Atleta::ByteSizeLong() const {
         this->qtdtitulos());
   }
 
+  // int32 idade = 6;
+  if (this->idade() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->idade());
+  }
+
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
@@ -1511,6 +1545,9 @@ void Atleta::MergeFrom(const Atleta& from) {
   if (from.qtdtitulos() != 0) {
     set_qtdtitulos(from.qtdtitulos());
   }
+  if (from.idade() != 0) {
+    set_idade(from.idade());
+  }
 }
 
 void Atleta::CopyFrom(const ::google::protobuf::Message& from) {
@@ -1545,6 +1582,7 @@ void Atleta::InternalSwap(Atleta* other) {
     GetArenaNoVirtual());
   swap(numcamisa_, other->numcamisa_);
   swap(qtdtitulos_, other->qtdtitulos_);
+  swap(idade_, other->idade_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 

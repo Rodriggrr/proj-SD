@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='Gerenciador',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\rClasses.proto\x12\x0bGerenciador\"\xf9\x01\n\x04Time\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12\x0f\n\x07tecnico\x18\x02 \x01(\t\x12\x0e\n\x06pontos\x18\x03 \x01(\x05\x12\x10\n\x08qtdJogos\x18\x04 \x01(\x05\x12/\n\x07\x61tletas\x18\x05 \x03(\x0b\x32\x1e.Gerenciador.Time.AtletasEntry\x1a\x43\n\x0c\x41tletasEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\"\n\x05value\x18\x02 \x01(\x0b\x32\x13.Gerenciador.Atleta:\x02\x38\x01\x1a:\n\x07Tecnico\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12\r\n\x05idade\x18\x02 \x01(\x05\x12\x12\n\nqtdTitulos\x18\x03 \x01(\x05\"\\\n\x06\x41tleta\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12\x0f\n\x07posicao\x18\x02 \x01(\t\x12\x11\n\tnumCamisa\x18\x03 \x01(\x05\x12\x12\n\nqtdTitulos\x18\x04 \x01(\x05\x12\x0c\n\x04time\x18\x05 \x01(\t\"S\n\x07Message\x12\x0c\n\x04type\x18\x01 \x01(\x05\x12\n\n\x02id\x18\x02 \x01(\x05\x12\x0e\n\x06objRef\x18\x03 \x01(\t\x12\x10\n\x08methodID\x18\x04 \x01(\t\x12\x0c\n\x04\x61rgs\x18\x05 \x01(\x0c\x62\x06proto3')
+  serialized_pb=_b('\n\rClasses.proto\x12\x0bGerenciador\"\xf9\x01\n\x04Time\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12\x0f\n\x07tecnico\x18\x02 \x01(\t\x12\x0e\n\x06pontos\x18\x03 \x01(\x05\x12\x10\n\x08qtdJogos\x18\x04 \x01(\x05\x12/\n\x07\x61tletas\x18\x05 \x03(\x0b\x32\x1e.Gerenciador.Time.AtletasEntry\x1a\x43\n\x0c\x41tletasEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\"\n\x05value\x18\x02 \x01(\x0b\x32\x13.Gerenciador.Atleta:\x02\x38\x01\x1a:\n\x07Tecnico\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12\r\n\x05idade\x18\x02 \x01(\x05\x12\x12\n\nqtdTitulos\x18\x03 \x01(\x05\"k\n\x06\x41tleta\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12\x0f\n\x07posicao\x18\x02 \x01(\t\x12\x11\n\tnumCamisa\x18\x03 \x01(\x05\x12\x12\n\nqtdTitulos\x18\x04 \x01(\x05\x12\x0c\n\x04time\x18\x05 \x01(\t\x12\r\n\x05idade\x18\x06 \x01(\x05\"S\n\x07Message\x12\x0c\n\x04type\x18\x01 \x01(\x05\x12\n\n\x02id\x18\x02 \x01(\x05\x12\x0e\n\x06objRef\x18\x03 \x01(\t\x12\x10\n\x08methodID\x18\x04 \x01(\t\x12\x0c\n\x04\x61rgs\x18\x05 \x01(\x0c\x62\x06proto3')
 )
 
 
@@ -207,6 +207,13 @@ _ATLETA = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='idade', full_name='Gerenciador.Atleta.idade', index=5,
+      number=6, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -220,7 +227,7 @@ _ATLETA = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=282,
-  serialized_end=374,
+  serialized_end=389,
 )
 
 
@@ -278,8 +285,8 @@ _MESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=376,
-  serialized_end=459,
+  serialized_start=391,
+  serialized_end=474,
 )
 
 _TIME_ATLETASENTRY.fields_by_name['value'].message_type = _ATLETA

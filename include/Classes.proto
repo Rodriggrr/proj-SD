@@ -22,6 +22,7 @@ message Atleta {
     int32 numCamisa = 3;
     int32 qtdTitulos = 4;
     string time = 5;
+    int32 idade = 6;
 }
 
 message Message {
