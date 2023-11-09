@@ -2,7 +2,7 @@ import socket
 from timeout_decorator import timeout
 
 class ServerTimedOutException(Exception):
-    def __init__(self, message="Server timed out, maybe it's offline?"):
+    def __init__(self, message="O tempo limite do servidor foi excedido, está fora do ar?"):
         self.message = message
         super().__init__(self.message)
 

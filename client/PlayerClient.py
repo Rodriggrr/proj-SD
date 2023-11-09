@@ -26,7 +26,7 @@ Digite a Posição:
 3 - Lateral
 4 - Meio Campo
 5 - Atacante
-""", "yellow")
+""")
             if   posicao == "1":
                 atleta.posicao = Classes_pb2.Atleta.GOLEIRO
             elif posicao == "2":
@@ -61,4 +61,7 @@ def main():
             sys.exit(0)
         except ArgsErrorException as e:
             print(colored("Erro: " + str(e), "red"))
+        except DuplicateRequestException as e:
+            None # descarta a mensagem duplicada
+        
 main()
