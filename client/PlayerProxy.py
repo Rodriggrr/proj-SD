@@ -1,4 +1,5 @@
 import Classes_pb2
+from termcolor import colored
 from UDPClient import *
 
 class ArgsErrorException(Exception):
@@ -14,9 +15,7 @@ class Proxy:
         atleta = Classes_pb2.Atleta()
         atleta.ParseFromString(bytes)
         #print("Posicao: " + atleta.DESCRIPTOR.enum_types_by_name['Posicao'].values_by_number[atleta.posicao].name)
-        print("\n{\n")
-        print(atleta)
-        print("}")
+        print(colored("\n{\n\n" + str(atleta) + "\n}", "yellow"))
 
     def addAtleta(self, atleta):
         bytes = self.doOperation(atleta, "addAtleta")

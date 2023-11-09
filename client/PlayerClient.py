@@ -1,7 +1,4 @@
 from PlayerProxy import *
-import sys
-
-
 import Classes_pb2
 
 class PlayerClient:
@@ -21,7 +18,7 @@ class PlayerClient:
             atleta.nome      = input("Digite o nome do atleta: ")
             atleta.idade     = int(input("Digite a idade do atleta: "))
             
-            posicao = input ("""
+            posicao = input("""
 Digite a Posição:
                              
 1 - Goleiro
@@ -29,7 +26,7 @@ Digite a Posição:
 3 - Lateral
 4 - Meio Campo
 5 - Atacante
-""")
+""", "yellow")
             if   posicao == "1":
                 atleta.posicao = Classes_pb2.Atleta.GOLEIRO
             elif posicao == "2":
@@ -63,5 +60,5 @@ def main():
             print("Erro: " + str(e))
             sys.exit(0)
         except ArgsErrorException as e:
-            print("Erro: " + str(e))
+            print(colored("Erro: " + str(e), "red"))
 main()
