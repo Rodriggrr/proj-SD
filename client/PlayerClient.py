@@ -14,6 +14,13 @@ class PlayerClient:
         if option == "1":
             atleta.nome = input("Digite o nome do atleta: ")
             self.proxy.getAtleta(atleta)
+        if option =="2":
+            atleta.nome = input("Digite o nome do atleta: ")
+            atleta.idade = input("Digite a idade do atleta: ")
+            atleta.posicao = input("Digite a posição do atleta: ")
+            atleta.numCamisa = input("Digite o número da camisa do atleta: ")
+            atleta.time = input("Digite o time do atleta: ")
+            self.proxy.addAtleta(atleta)
         else:
             print("Opção inválida")
             self.menu()

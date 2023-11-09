@@ -4,9 +4,14 @@ from UDPClient import UDPClient
 class Proxy:
     socket = UDPClient("localhost", 49110)
     
-
     def getAtleta(self, atleta):
         bytes = self.doOperation(atleta, "getAtleta")
+        atleta = Atleta()
+        atleta.ParseFromString(bytes)
+        print(atleta)
+
+    def addAtleta(self, atleta):
+        bytes = self.doOperation(atleta, "addAtleta")
         atleta = Atleta()
         atleta.ParseFromString(bytes)
         print(atleta)
