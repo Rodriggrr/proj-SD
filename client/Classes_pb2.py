@@ -19,10 +19,44 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='Gerenciador',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\rClasses.proto\x12\x0bGerenciador\"\xf9\x01\n\x04Time\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12\x0f\n\x07tecnico\x18\x02 \x01(\t\x12\x0e\n\x06pontos\x18\x03 \x01(\x05\x12\x10\n\x08qtdJogos\x18\x04 \x01(\x05\x12/\n\x07\x61tletas\x18\x05 \x03(\x0b\x32\x1e.Gerenciador.Time.AtletasEntry\x1a\x43\n\x0c\x41tletasEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\"\n\x05value\x18\x02 \x01(\x0b\x32\x13.Gerenciador.Atleta:\x02\x38\x01\x1a:\n\x07Tecnico\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12\r\n\x05idade\x18\x02 \x01(\x05\x12\x12\n\nqtdTitulos\x18\x03 \x01(\x05\"k\n\x06\x41tleta\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12\x0f\n\x07posicao\x18\x02 \x01(\t\x12\x11\n\tnumCamisa\x18\x03 \x01(\x05\x12\x12\n\nqtdTitulos\x18\x04 \x01(\x05\x12\x0c\n\x04time\x18\x05 \x01(\t\x12\r\n\x05idade\x18\x06 \x01(\x05\"S\n\x07Message\x12\x0c\n\x04type\x18\x01 \x01(\x05\x12\n\n\x02id\x18\x02 \x01(\x05\x12\x0e\n\x06objRef\x18\x03 \x01(\t\x12\x10\n\x08methodID\x18\x04 \x01(\t\x12\x0c\n\x04\x61rgs\x18\x05 \x01(\x0c\x62\x06proto3')
+  serialized_pb=_b('\n\rClasses.proto\x12\x0bGerenciador\"\xf9\x01\n\x04Time\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12\x0f\n\x07tecnico\x18\x02 \x01(\t\x12\x0e\n\x06pontos\x18\x03 \x01(\x05\x12\x10\n\x08qtdJogos\x18\x04 \x01(\x05\x12/\n\x07\x61tletas\x18\x05 \x03(\x0b\x32\x1e.Gerenciador.Time.AtletasEntry\x1a\x43\n\x0c\x41tletasEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\"\n\x05value\x18\x02 \x01(\x0b\x32\x13.Gerenciador.Atleta:\x02\x38\x01\x1a:\n\x07Tecnico\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12\r\n\x05idade\x18\x02 \x01(\x05\x12\x12\n\nqtdTitulos\x18\x03 \x01(\x05\"\xd9\x01\n\x06\x41tleta\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12,\n\x07posicao\x18\x02 \x01(\x0e\x32\x1b.Gerenciador.Atleta.Posicao\x12\x11\n\tnumCamisa\x18\x03 \x01(\x05\x12\x12\n\nqtdTitulos\x18\x04 \x01(\x05\x12\x0c\n\x04time\x18\x05 \x01(\t\x12\r\n\x05idade\x18\x06 \x01(\x05\"O\n\x07Posicao\x12\x0b\n\x07GOLEIRO\x10\x00\x12\x0c\n\x08ZAGUEIRO\x10\x01\x12\x0b\n\x07LATERAL\x10\x02\x12\x0e\n\nMEIO_CAMPO\x10\x03\x12\x0c\n\x08\x41TACANTE\x10\x04\"S\n\x07Message\x12\x0c\n\x04type\x18\x01 \x01(\x05\x12\n\n\x02id\x18\x02 \x01(\x05\x12\x0e\n\x06objRef\x18\x03 \x01(\t\x12\x10\n\x08methodID\x18\x04 \x01(\t\x12\x0c\n\x04\x61rgs\x18\x05 \x01(\x0c\x62\x06proto3')
 )
 
 
+
+_ATLETA_POSICAO = _descriptor.EnumDescriptor(
+  name='Posicao',
+  full_name='Gerenciador.Atleta.Posicao',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='GOLEIRO', index=0, number=0,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ZAGUEIRO', index=1, number=1,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='LATERAL', index=2, number=2,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='MEIO_CAMPO', index=3, number=3,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ATACANTE', index=4, number=4,
+      serialized_options=None,
+      type=None),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=421,
+  serialized_end=500,
+)
+_sym_db.RegisterEnumDescriptor(_ATLETA_POSICAO)
 
 
 _TIME_ATLETASENTRY = _descriptor.Descriptor(
@@ -181,8 +215,8 @@ _ATLETA = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='posicao', full_name='Gerenciador.Atleta.posicao', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      number=2, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -219,6 +253,7 @@ _ATLETA = _descriptor.Descriptor(
   ],
   nested_types=[],
   enum_types=[
+    _ATLETA_POSICAO,
   ],
   serialized_options=None,
   is_extendable=False,
@@ -226,8 +261,8 @@ _ATLETA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=282,
-  serialized_end=389,
+  serialized_start=283,
+  serialized_end=500,
 )
 
 
@@ -285,14 +320,16 @@ _MESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=391,
-  serialized_end=474,
+  serialized_start=502,
+  serialized_end=585,
 )
 
 _TIME_ATLETASENTRY.fields_by_name['value'].message_type = _ATLETA
 _TIME_ATLETASENTRY.containing_type = _TIME
 _TIME_TECNICO.containing_type = _TIME
 _TIME.fields_by_name['atletas'].message_type = _TIME_ATLETASENTRY
+_ATLETA.fields_by_name['posicao'].enum_type = _ATLETA_POSICAO
+_ATLETA_POSICAO.containing_type = _ATLETA
 DESCRIPTOR.message_types_by_name['Time'] = _TIME
 DESCRIPTOR.message_types_by_name['Atleta'] = _ATLETA
 DESCRIPTOR.message_types_by_name['Message'] = _MESSAGE

@@ -35,6 +35,7 @@ int main(){
     atleta.set_nome("Hernanes");
     atleta.set_idade(35);
     atleta.set_time("Sao Paulo");
+    atleta.set_posicao(Gerenciador::Atleta_Posicao_ATACANTE);
 
     campeonato.addAtleta(atleta.time(), atleta);
 
