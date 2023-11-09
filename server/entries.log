@@ -1,0 +1,6 @@
+Received message: methodID: "getAtleta"
+args: "\n\010Hernanes"
+
+Sending message: methodID: "getAtleta"
+args: "\n\010Hernanes\020\004*\tSao Paulo0&"
+
