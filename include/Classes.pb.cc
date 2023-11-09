@@ -177,7 +177,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Gerenciador::Message, type_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Gerenciador::Message, error_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Gerenciador::Message, id_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Gerenciador::Message, objref_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Gerenciador::Message, methodid_),
@@ -232,12 +232,12 @@ void AddDescriptorsImpl() {
       "misa\030\003 \001(\005\022\022\n\nqtdTitulos\030\004 \001(\005\022\014\n\004time\030\005"
       " \001(\t\022\r\n\005idade\030\006 \001(\005\"O\n\007Posicao\022\013\n\007GOLEIR"
       "O\020\000\022\014\n\010ZAGUEIRO\020\001\022\013\n\007LATERAL\020\002\022\016\n\nMEIO_C"
-      "AMPO\020\003\022\014\n\010ATACANTE\020\004\"S\n\007Message\022\014\n\004type\030"
-      "\001 \001(\005\022\n\n\002id\030\002 \001(\005\022\016\n\006objRef\030\003 \001(\t\022\020\n\010met"
-      "hodID\030\004 \001(\t\022\014\n\004args\030\005 \001(\014b\006proto3"
+      "AMPO\020\003\022\014\n\010ATACANTE\020\004\"T\n\007Message\022\r\n\005error"
+      "\030\001 \001(\005\022\n\n\002id\030\002 \001(\005\022\016\n\006objRef\030\003 \001(\t\022\020\n\010me"
+      "thodID\030\004 \001(\t\022\014\n\004args\030\005 \001(\014b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 593);
+      descriptor, 594);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "Classes.proto", &protobuf_RegisterTypes);
 }
@@ -1607,7 +1607,7 @@ void Atleta::InternalSwap(Atleta* other) {
 void Message::InitAsDefaultInstance() {
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int Message::kTypeFieldNumber;
+const int Message::kErrorFieldNumber;
 const int Message::kIdFieldNumber;
 const int Message::kObjRefFieldNumber;
 const int Message::kMethodIDFieldNumber;
@@ -1637,9 +1637,9 @@ Message::Message(const Message& from)
   if (from.args().size() > 0) {
     args_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.args_);
   }
-  ::memcpy(&type_, &from.type_,
+  ::memcpy(&error_, &from.error_,
     static_cast<size_t>(reinterpret_cast<char*>(&id_) -
-    reinterpret_cast<char*>(&type_)) + sizeof(id_));
+    reinterpret_cast<char*>(&error_)) + sizeof(id_));
   // @@protoc_insertion_point(copy_constructor:Gerenciador.Message)
 }
 
@@ -1647,9 +1647,9 @@ void Message::SharedCtor() {
   objref_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   methodid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   args_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&type_, 0, static_cast<size_t>(
+  ::memset(&error_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&id_) -
-      reinterpret_cast<char*>(&type_)) + sizeof(id_));
+      reinterpret_cast<char*>(&error_)) + sizeof(id_));
 }
 
 Message::~Message() {
@@ -1686,9 +1686,9 @@ void Message::Clear() {
   objref_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   methodid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   args_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&type_, 0, static_cast<size_t>(
+  ::memset(&error_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&id_) -
-      reinterpret_cast<char*>(&type_)) + sizeof(id_));
+      reinterpret_cast<char*>(&error_)) + sizeof(id_));
   _internal_metadata_.Clear();
 }
 
@@ -1702,14 +1702,14 @@ bool Message::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // int32 type = 1;
+      // int32 error = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &type_)));
+                 input, &error_)));
         } else {
           goto handle_unusual;
         }
@@ -1800,9 +1800,9 @@ void Message::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int32 type = 1;
-  if (this->type() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->type(), output);
+  // int32 error = 1;
+  if (this->error() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->error(), output);
   }
 
   // int32 id = 2;
@@ -1850,9 +1850,9 @@ void Message::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int32 type = 1;
-  if (this->type() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->type(), target);
+  // int32 error = 1;
+  if (this->error() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->error(), target);
   }
 
   // int32 id = 2;
@@ -1927,11 +1927,11 @@ size_t Message::ByteSizeLong() const {
         this->args());
   }
 
-  // int32 type = 1;
-  if (this->type() != 0) {
+  // int32 error = 1;
+  if (this->error() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->type());
+        this->error());
   }
 
   // int32 id = 2;
@@ -1980,8 +1980,8 @@ void Message::MergeFrom(const Message& from) {
 
     args_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.args_);
   }
-  if (from.type() != 0) {
-    set_type(from.type());
+  if (from.error() != 0) {
+    set_error(from.error());
   }
   if (from.id() != 0) {
     set_id(from.id());
@@ -2018,7 +2018,7 @@ void Message::InternalSwap(Message* other) {
     GetArenaNoVirtual());
   args_.Swap(&other->args_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
-  swap(type_, other->type_);
+  swap(error_, other->error_);
   swap(id_, other->id_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }

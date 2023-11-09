@@ -30,16 +30,16 @@ Digite a Posição:
 4 - Meio Campo
 5 - Atacante
 """)
-            if posicao == "1":
+            if   posicao == "1":
                 atleta.posicao = Classes_pb2.Atleta.GOLEIRO
             elif posicao == "2":
-                atleta.Posicao.ZAGUEIRO
+                atleta.posicao = Classes_pb2.Atleta.ZAGUEIRO
             elif posicao == "3":
-                atleta.Posicao.LATERAL
+                atleta.posicao = Classes_pb2.Atleta.LATERAL
             elif posicao == "4":
-                atleta.Posicao.MEIOCAMPO
+                atleta.posicao = Classes_pb2.Atleta.MEIO_CAMPO
             elif posicao == "5":
-                atleta.Posicao.ATACANTE
+                atleta.posicao = Classes_pb2.Atleta.ATACANTE
                 
             atleta.numCamisa = int(input("Digite o número da camisa do atleta: "))
             atleta.time = input("Digite o time do atleta: ")
@@ -54,11 +54,14 @@ Digite a Posição:
 atleta = Classes_pb2.Atleta()
 
 def main():
-    try:
-        while True:
+    
+    while True:
+        try:
             client = PlayerClient()
             client.menu()
-    except ServerTimedOutException as e:
-        print("Erro: " + str(e))
-        sys.exit(0)
+        except ServerTimedOutException as e:
+            print("Erro: " + str(e))
+            sys.exit(0)
+        except ArgsErrorException as e:
+            print("Erro: " + str(e))
 main()

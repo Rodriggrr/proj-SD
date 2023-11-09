@@ -1,6 +1,11 @@
 import Classes_pb2
 from UDPClient import *
 
+class ArgsErrorException(Exception):
+    def __init__(self, message="Invalid arguments"):
+        self.message = message
+        super().__init__(self.message)
+
 class Proxy:
     socket = UDPClient("localhost", 49110)
     
@@ -19,7 +24,7 @@ class Proxy:
         atleta.ParseFromString(bytes)
         #print("Posicao: " + atleta.DESCRIPTOR.enum_types_by_name['Posicao'].values_by_number[atleta.posicao].name)
         print("\n{\n")
-        print("\n" + atleta)
+        print(atleta)
         print("}")
         
     def doOperation(self, request, method):
@@ -37,6 +42,8 @@ class Proxy:
     def desempacotaMensagem(self, msg):
         response = Classes_pb2.Message()
         response.ParseFromString(msg)
+        if response.error == 1:
+            raise ArgsErrorException(response.args.decode())
         bytes = response.args
         return bytes
         

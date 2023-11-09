@@ -40,9 +40,9 @@ int main(){
     campeonato.addAtleta(atleta.time(), atleta);
 
     while(true){
+        Message message;
+        Despachante despachante;
         try{
-            Message message;
-            Despachante despachante;
             message = getRequest(socket.recv());
             std::cout << "Received message: " << message.DebugString() << std::endl;
             Message sendMsg = despachante.invoke(message);
@@ -50,7 +50,7 @@ int main(){
             socket.sendTo(*socket.getAddress(), sendMsg.SerializeAsString());
 
         } catch(std::runtime_error& e){
-            std::cout << e.what() << std::endl;
+            socket.sendTo(*socket.getAddress(), despachante.empacotaMensagem(message, e.what(), true).SerializeAsString());
         }
     }
 }

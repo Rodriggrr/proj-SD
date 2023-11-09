@@ -721,11 +721,11 @@ class Message : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::std::string* release_args();
   void set_allocated_args(::std::string* args);
 
-  // int32 type = 1;
-  void clear_type();
-  static const int kTypeFieldNumber = 1;
-  ::google::protobuf::int32 type() const;
-  void set_type(::google::protobuf::int32 value);
+  // int32 error = 1;
+  void clear_error();
+  static const int kErrorFieldNumber = 1;
+  ::google::protobuf::int32 error() const;
+  void set_error(::google::protobuf::int32 value);
 
   // int32 id = 2;
   void clear_id();
@@ -740,7 +740,7 @@ class Message : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::google::protobuf::internal::ArenaStringPtr objref_;
   ::google::protobuf::internal::ArenaStringPtr methodid_;
   ::google::protobuf::internal::ArenaStringPtr args_;
-  ::google::protobuf::int32 type_;
+  ::google::protobuf::int32 error_;
   ::google::protobuf::int32 id_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_Classes_2eproto::TableStruct;
@@ -1165,18 +1165,18 @@ inline void Atleta::set_idade(::google::protobuf::int32 value) {
 
 // Message
 
-// int32 type = 1;
-inline void Message::clear_type() {
-  type_ = 0;
+// int32 error = 1;
+inline void Message::clear_error() {
+  error_ = 0;
 }
-inline ::google::protobuf::int32 Message::type() const {
-  // @@protoc_insertion_point(field_get:Gerenciador.Message.type)
-  return type_;
+inline ::google::protobuf::int32 Message::error() const {
+  // @@protoc_insertion_point(field_get:Gerenciador.Message.error)
+  return error_;
 }
-inline void Message::set_type(::google::protobuf::int32 value) {
+inline void Message::set_error(::google::protobuf::int32 value) {
   
-  type_ = value;
-  // @@protoc_insertion_point(field_set:Gerenciador.Message.type)
+  error_ = value;
+  // @@protoc_insertion_point(field_set:Gerenciador.Message.error)
 }
 
 // int32 id = 2;

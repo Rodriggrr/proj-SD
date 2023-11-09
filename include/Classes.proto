@@ -34,7 +34,7 @@ message Atleta {
 }
 
 message Message {
-    int32 type = 1;
+    int32 error = 1;
     int32 id = 2;
     string objRef = 3;
     string methodID = 4;
