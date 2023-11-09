@@ -25,11 +25,8 @@ class Proxy:
     
     def desempacotaMensagem(self, msg):
         response = Message()
-        msgSize = response.ByteSize()
-        msgFixed = msg[:msgSize]
         response.ParseFromString(msg)
         bytes = response.args
-
         return bytes
         
 
