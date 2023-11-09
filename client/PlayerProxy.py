@@ -1,5 +1,5 @@
 import Classes_pb2
-from UDPClient import UDPClient
+from UDPClient import *
 
 class Proxy:
     socket = UDPClient("localhost", 49110)

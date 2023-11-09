@@ -1,6 +1,11 @@
 import socket
 from timeout_decorator import timeout
 
+class ServerTimedOutException(Exception):
+    def __init__(self, message="Server timed out, maybe it's offline?"):
+        self.message = message
+        super().__init__(self.message)
+
 class UDPClient:
     name = 'localhost'
     port = 49110
@@ -20,11 +25,15 @@ class UDPClient:
 
     def getResponse(self):
         errors = 0
-        while errors < 3:
+        while True:
+            if errors == 3:
+                raise ServerTimedOutException()
             try:
                 response = self._getResponse()
             except Exception as e:
                 errors += 1
+                continue
+            break
         return response
         
             

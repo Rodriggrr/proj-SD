@@ -1,4 +1,4 @@
-from PlayerProxy import Proxy
+from PlayerProxy import *
 import sys
 
 
@@ -54,10 +54,11 @@ Digite a Posição:
 atleta = Classes_pb2.Atleta()
 
 def main():
-   
-    while True:
-        client = PlayerClient()
-        client.menu()
-        
+    try:
+        while True:
+            client = PlayerClient()
+            client.menu()
+    except ServerTimedOutException as e:
+        print("Erro: " + str(e))
+        sys.exit(0)
 main()
-print("não foi possível conectar ao servidor")
