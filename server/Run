@@ -1,0 +1,2 @@
+#!/bin/bash
+g++ -std=c++17 UDPServer.cpp ../include/Classes.pb.cc -o oUDPServer $(pkg-config --cflags --libs protobuf)

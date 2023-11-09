@@ -8,15 +8,19 @@ class Proxy:
         bytes = self.doOperation(atleta, "getAtleta")
         atleta = Classes_pb2.Atleta()
         atleta.ParseFromString(bytes)
-        print("Posicao: " + atleta.DESCRIPTOR.enum_types_by_name['Posicao'].values_by_number[atleta.posicao].name)
+        #print("Posicao: " + atleta.DESCRIPTOR.enum_types_by_name['Posicao'].values_by_number[atleta.posicao].name)
+        print("\n{\n")
         print(atleta)
+        print("}")
 
     def addAtleta(self, atleta):
         bytes = self.doOperation(atleta, "addAtleta")
         atleta = Classes_pb2.Atleta()
         atleta.ParseFromString(bytes)
-        print("Posicao: " + atleta.DESCRIPTOR.enum_types_by_name['Posicao'].values_by_number[atleta.posicao].name)
-        print(atleta)
+        #print("Posicao: " + atleta.DESCRIPTOR.enum_types_by_name['Posicao'].values_by_number[atleta.posicao].name)
+        print("\n{\n")
+        print("\n" + atleta)
+        print("}")
         
     def doOperation(self, request, method):
         msg = self.empacotaMensagem(request, method)
