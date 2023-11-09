@@ -23,7 +23,9 @@ class Proxy:
         atleta = Classes_pb2.Atleta()
         atleta.ParseFromString(bytes)
         #print("Posicao: " + atleta.DESCRIPTOR.enum_types_by_name['Posicao'].values_by_number[atleta.posicao].name)
-        print(colored("\n{\n\n" + str(atleta) + "\n}", "yellow"))
+        print("\nAtleta {\n")
+        print(atleta)
+        print("}\n")
 
     def addAtleta(self, atleta):
         bytes = self.doOperation(atleta, "addAtleta")
