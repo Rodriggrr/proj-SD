@@ -4,3 +4,33 @@ args: "\n\010Hernanes"
 Sending message: methodID: "getAtleta"
 args: "\n\010Hernanes\020\004*\tSao Paulo0&"
 
+Received message: methodID: "addAtleta"
+args: "\n\017Rodrigo Farinon\020\003\030\r*\tSao Paulo0\024"
+
+Sending message: methodID: "addAtleta"
+args: "\n\017Rodrigo Farinon\020\003\030\r*\tSao Paulo0\024"
+
+Received message: methodID: "getAtleta"
+args: "\n\017Rodrigo Farinon\020\003\030\r*\tSao Paulo0\024"
+
+Sending message: methodID: "getAtleta"
+args: "\n\017Rodrigo Farinon\020\003\030\r*\tSao Paulo0\024"
+
+Received message: methodID: "getAtleta"
+args: "\n\017Rodrigo Farinon"
+
+Sending message: methodID: "getAtleta"
+args: "\n\017Rodrigo Farinon\020\003\030\r*\tSao Paulo0\024"
+
+Received message: methodID: "addAtleta"
+args: "\n\014Manoel GOmes\020\001\030\001*\tSao Paulo0<"
+
+Sending message: methodID: "addAtleta"
+args: "\n\014Manoel GOmes\020\001\030\001*\tSao Paulo0<"
+
+Received message: methodID: "addAtleta"
+args: "\n\014Rodrigo Caua\030\014*\tSao Paulo0\023"
+
+Sending message: methodID: "addAtleta"
+args: "\n\014Rodrigo Caua\030\014*\tSao Paulo0\023"
+

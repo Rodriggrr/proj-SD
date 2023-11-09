@@ -25,11 +25,12 @@ message Atleta {
     int32 idade = 6;
 
     enum Posicao {
-        GOLEIRO = 0;
+        DEFAULT = 0;
         ZAGUEIRO = 1;
         LATERAL = 2;
         MEIO_CAMPO = 3;
         ATACANTE = 4;
+        GOLEIRO = 5;
     }
 }
 

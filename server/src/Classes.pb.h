@@ -78,17 +78,18 @@ template<> ::Gerenciador::Time_Tecnico* Arena::CreateMaybeMessage<::Gerenciador:
 namespace Gerenciador {
 
 enum Atleta_Posicao {
-  Atleta_Posicao_GOLEIRO = 0,
+  Atleta_Posicao_DEFAULT = 0,
   Atleta_Posicao_ZAGUEIRO = 1,
   Atleta_Posicao_LATERAL = 2,
   Atleta_Posicao_MEIO_CAMPO = 3,
   Atleta_Posicao_ATACANTE = 4,
+  Atleta_Posicao_GOLEIRO = 5,
   Atleta_Posicao_Atleta_Posicao_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   Atleta_Posicao_Atleta_Posicao_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool Atleta_Posicao_IsValid(int value);
-const Atleta_Posicao Atleta_Posicao_Posicao_MIN = Atleta_Posicao_GOLEIRO;
-const Atleta_Posicao Atleta_Posicao_Posicao_MAX = Atleta_Posicao_ATACANTE;
+const Atleta_Posicao Atleta_Posicao_Posicao_MIN = Atleta_Posicao_DEFAULT;
+const Atleta_Posicao Atleta_Posicao_Posicao_MAX = Atleta_Posicao_GOLEIRO;
 const int Atleta_Posicao_Posicao_ARRAYSIZE = Atleta_Posicao_Posicao_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* Atleta_Posicao_descriptor();
@@ -492,8 +493,8 @@ class Atleta : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   // nested types ----------------------------------------------------
 
   typedef Atleta_Posicao Posicao;
-  static const Posicao GOLEIRO =
-    Atleta_Posicao_GOLEIRO;
+  static const Posicao DEFAULT =
+    Atleta_Posicao_DEFAULT;
   static const Posicao ZAGUEIRO =
     Atleta_Posicao_ZAGUEIRO;
   static const Posicao LATERAL =
@@ -502,6 +503,8 @@ class Atleta : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
     Atleta_Posicao_MEIO_CAMPO;
   static const Posicao ATACANTE =
     Atleta_Posicao_ATACANTE;
+  static const Posicao GOLEIRO =
+    Atleta_Posicao_GOLEIRO;
   static inline bool Posicao_IsValid(int value) {
     return Atleta_Posicao_IsValid(value);
   }

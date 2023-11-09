@@ -227,17 +227,18 @@ void AddDescriptorsImpl() {
       "asEntry\022\013\n\003key\030\001 \001(\t\022\"\n\005value\030\002 \001(\0132\023.Ge"
       "renciador.Atleta:\0028\001\032:\n\007Tecnico\022\014\n\004nome\030"
       "\001 \001(\t\022\r\n\005idade\030\002 \001(\005\022\022\n\nqtdTitulos\030\003 \001(\005"
-      "\"\331\001\n\006Atleta\022\014\n\004nome\030\001 \001(\t\022,\n\007posicao\030\002 \001"
+      "\"\346\001\n\006Atleta\022\014\n\004nome\030\001 \001(\t\022,\n\007posicao\030\002 \001"
       "(\0162\033.Gerenciador.Atleta.Posicao\022\021\n\tnumCa"
       "misa\030\003 \001(\005\022\022\n\nqtdTitulos\030\004 \001(\005\022\014\n\004time\030\005"
-      " \001(\t\022\r\n\005idade\030\006 \001(\005\"O\n\007Posicao\022\013\n\007GOLEIR"
-      "O\020\000\022\014\n\010ZAGUEIRO\020\001\022\013\n\007LATERAL\020\002\022\016\n\nMEIO_C"
-      "AMPO\020\003\022\014\n\010ATACANTE\020\004\"T\n\007Message\022\r\n\005error"
-      "\030\001 \001(\005\022\n\n\002id\030\002 \001(\005\022\016\n\006objRef\030\003 \001(\t\022\020\n\010me"
-      "thodID\030\004 \001(\t\022\014\n\004args\030\005 \001(\014b\006proto3"
+      " \001(\t\022\r\n\005idade\030\006 \001(\005\"\\\n\007Posicao\022\013\n\007DEFAUL"
+      "T\020\000\022\014\n\010ZAGUEIRO\020\001\022\013\n\007LATERAL\020\002\022\016\n\nMEIO_C"
+      "AMPO\020\003\022\014\n\010ATACANTE\020\004\022\013\n\007GOLEIRO\020\005\"T\n\007Mes"
+      "sage\022\r\n\005error\030\001 \001(\005\022\n\n\002id\030\002 \001(\005\022\016\n\006objRe"
+      "f\030\003 \001(\t\022\020\n\010methodID\030\004 \001(\t\022\014\n\004args\030\005 \001(\014b"
+      "\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 594);
+      descriptor, 607);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "Classes.proto", &protobuf_RegisterTypes);
 }
@@ -265,6 +266,7 @@ bool Atleta_Posicao_IsValid(int value) {
     case 2:
     case 3:
     case 4:
+    case 5:
       return true;
     default:
       return false;
@@ -272,11 +274,12 @@ bool Atleta_Posicao_IsValid(int value) {
 }
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const Atleta_Posicao Atleta::GOLEIRO;
+const Atleta_Posicao Atleta::DEFAULT;
 const Atleta_Posicao Atleta::ZAGUEIRO;
 const Atleta_Posicao Atleta::LATERAL;
 const Atleta_Posicao Atleta::MEIO_CAMPO;
 const Atleta_Posicao Atleta::ATACANTE;
+const Atleta_Posicao Atleta::GOLEIRO;
 const Atleta_Posicao Atleta::Posicao_MIN;
 const Atleta_Posicao Atleta::Posicao_MAX;
 const int Atleta::Posicao_ARRAYSIZE;
