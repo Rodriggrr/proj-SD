@@ -1,4 +1,5 @@
 import socket
+from timeout_decorator import timeout
 
 class UDPClient:
     name = 'localhost'
@@ -12,6 +13,15 @@ class UDPClient:
     def sendRequest(self, bytes):
         self.socket.sendto(bytes, (self.name, self.port))
 
+    @staticmethod
+    @timeout(2) 
+    def _getResponse():
+        return UDPClient.socket.recv(1024)
+
     def getResponse(self):
-        return self.socket.recv(1024)
+        response = self._getResponse()
+        return response
+        
+            
+
     

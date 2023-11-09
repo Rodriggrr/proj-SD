@@ -54,9 +54,12 @@ Digite a Posição:
 atleta = Classes_pb2.Atleta()
 
 def main():
-    choice = ""
-    while choice != "exit":
+   
+    while true:
         client = PlayerClient()
         client.menu()
+        
+
 
 main()
+print("não foi possível conectar ao servidor")
