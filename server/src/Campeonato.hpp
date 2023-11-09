@@ -1,5 +1,5 @@
 #include <vector>
-#include "../../include/Classes.pb.h"
+#include "Classes.pb.h"
 
 class Campeonato {
     std::vector<Gerenciador::Time> times;
