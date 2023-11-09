@@ -4,8 +4,8 @@
 Campeonato campeonato;
 
 #include "src/Despachante.hpp"
-
 using namespace Gerenciador;
+
 #include "src/fn.hpp"
 #include <iostream>
 
