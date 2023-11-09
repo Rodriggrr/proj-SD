@@ -18,11 +18,19 @@ message Time {
 
 message Atleta {
     string nome = 1;
-    string posicao = 2;
+    Posicao posicao = 2;
     int32 numCamisa = 3;
     int32 qtdTitulos = 4;
     string time = 5;
     int32 idade = 6;
+
+    enum Posicao {
+        GOLEIRO = 0;
+        ZAGUEIRO = 1;
+        LATERAL = 2;
+        MEIO_CAMPO = 3;
+        ATACANTE = 4;
+    }
 }
 
 message Message {

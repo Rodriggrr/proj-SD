@@ -131,6 +131,7 @@ void InitDefaults() {
 }
 
 ::google::protobuf::Metadata file_level_metadata[5];
+const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[1];
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Gerenciador::Time_AtletasEntry_DoNotUse, _has_bits_),
@@ -202,7 +203,7 @@ void protobuf_AssignDescriptors() {
   AddDescriptors();
   AssignDescriptors(
       "Classes.proto", schemas, file_default_instances, TableStruct::offsets,
-      file_level_metadata, NULL, NULL);
+      file_level_metadata, file_level_enum_descriptors, NULL);
 }
 
 void protobuf_AssignDescriptorsOnce() {
@@ -226,15 +227,17 @@ void AddDescriptorsImpl() {
       "asEntry\022\013\n\003key\030\001 \001(\t\022\"\n\005value\030\002 \001(\0132\023.Ge"
       "renciador.Atleta:\0028\001\032:\n\007Tecnico\022\014\n\004nome\030"
       "\001 \001(\t\022\r\n\005idade\030\002 \001(\005\022\022\n\nqtdTitulos\030\003 \001(\005"
-      "\"k\n\006Atleta\022\014\n\004nome\030\001 \001(\t\022\017\n\007posicao\030\002 \001("
-      "\t\022\021\n\tnumCamisa\030\003 \001(\005\022\022\n\nqtdTitulos\030\004 \001(\005"
-      "\022\014\n\004time\030\005 \001(\t\022\r\n\005idade\030\006 \001(\005\"S\n\007Message"
-      "\022\014\n\004type\030\001 \001(\005\022\n\n\002id\030\002 \001(\005\022\016\n\006objRef\030\003 \001"
-      "(\t\022\020\n\010methodID\030\004 \001(\t\022\014\n\004args\030\005 \001(\014b\006prot"
-      "o3"
+      "\"\331\001\n\006Atleta\022\014\n\004nome\030\001 \001(\t\022,\n\007posicao\030\002 \001"
+      "(\0162\033.Gerenciador.Atleta.Posicao\022\021\n\tnumCa"
+      "misa\030\003 \001(\005\022\022\n\nqtdTitulos\030\004 \001(\005\022\014\n\004time\030\005"
+      " \001(\t\022\r\n\005idade\030\006 \001(\005\"O\n\007Posicao\022\013\n\007GOLEIR"
+      "O\020\000\022\014\n\010ZAGUEIRO\020\001\022\013\n\007LATERAL\020\002\022\016\n\nMEIO_C"
+      "AMPO\020\003\022\014\n\010ATACANTE\020\004\"S\n\007Message\022\014\n\004type\030"
+      "\001 \001(\005\022\n\n\002id\030\002 \001(\005\022\016\n\006objRef\030\003 \001(\t\022\020\n\010met"
+      "hodID\030\004 \001(\t\022\014\n\004args\030\005 \001(\014b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 482);
+      descriptor, 593);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "Classes.proto", &protobuf_RegisterTypes);
 }
@@ -251,6 +254,33 @@ struct StaticDescriptorInitializer {
 } static_descriptor_initializer;
 }  // namespace protobuf_Classes_2eproto
 namespace Gerenciador {
+const ::google::protobuf::EnumDescriptor* Atleta_Posicao_descriptor() {
+  protobuf_Classes_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_Classes_2eproto::file_level_enum_descriptors[0];
+}
+bool Atleta_Posicao_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+      return true;
+    default:
+      return false;
+  }
+}
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const Atleta_Posicao Atleta::GOLEIRO;
+const Atleta_Posicao Atleta::ZAGUEIRO;
+const Atleta_Posicao Atleta::LATERAL;
+const Atleta_Posicao Atleta::MEIO_CAMPO;
+const Atleta_Posicao Atleta::ATACANTE;
+const Atleta_Posicao Atleta::Posicao_MIN;
+const Atleta_Posicao Atleta::Posicao_MAX;
+const int Atleta::Posicao_ARRAYSIZE;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 // ===================================================================
 
@@ -1145,27 +1175,22 @@ Atleta::Atleta(const Atleta& from)
   if (from.nome().size() > 0) {
     nome_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.nome_);
   }
-  posicao_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.posicao().size() > 0) {
-    posicao_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.posicao_);
-  }
   time_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (from.time().size() > 0) {
     time_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.time_);
   }
-  ::memcpy(&numcamisa_, &from.numcamisa_,
+  ::memcpy(&posicao_, &from.posicao_,
     static_cast<size_t>(reinterpret_cast<char*>(&idade_) -
-    reinterpret_cast<char*>(&numcamisa_)) + sizeof(idade_));
+    reinterpret_cast<char*>(&posicao_)) + sizeof(idade_));
   // @@protoc_insertion_point(copy_constructor:Gerenciador.Atleta)
 }
 
 void Atleta::SharedCtor() {
   nome_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  posicao_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   time_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&numcamisa_, 0, static_cast<size_t>(
+  ::memset(&posicao_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&idade_) -
-      reinterpret_cast<char*>(&numcamisa_)) + sizeof(idade_));
+      reinterpret_cast<char*>(&posicao_)) + sizeof(idade_));
 }
 
 Atleta::~Atleta() {
@@ -1175,7 +1200,6 @@ Atleta::~Atleta() {
 
 void Atleta::SharedDtor() {
   nome_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  posicao_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   time_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
@@ -1200,11 +1224,10 @@ void Atleta::Clear() {
   (void) cached_has_bits;
 
   nome_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  posicao_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   time_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&numcamisa_, 0, static_cast<size_t>(
+  ::memset(&posicao_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&idade_) -
-      reinterpret_cast<char*>(&numcamisa_)) + sizeof(idade_));
+      reinterpret_cast<char*>(&posicao_)) + sizeof(idade_));
   _internal_metadata_.Clear();
 }
 
@@ -1234,16 +1257,15 @@ bool Atleta::MergePartialFromCodedStream(
         break;
       }
 
-      // string posicao = 2;
+      // .Gerenciador.Atleta.Posicao posicao = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_posicao()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->posicao().data(), static_cast<int>(this->posicao().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "Gerenciador.Atleta.posicao"));
+            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          set_posicao(static_cast< ::Gerenciador::Atleta_Posicao >(value));
         } else {
           goto handle_unusual;
         }
@@ -1344,13 +1366,9 @@ void Atleta::SerializeWithCachedSizes(
       1, this->nome(), output);
   }
 
-  // string posicao = 2;
-  if (this->posicao().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->posicao().data(), static_cast<int>(this->posicao().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "Gerenciador.Atleta.posicao");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+  // .Gerenciador.Atleta.Posicao posicao = 2;
+  if (this->posicao() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
       2, this->posicao(), output);
   }
 
@@ -1404,15 +1422,10 @@ void Atleta::SerializeWithCachedSizes(
         1, this->nome(), target);
   }
 
-  // string posicao = 2;
-  if (this->posicao().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->posicao().data(), static_cast<int>(this->posicao().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "Gerenciador.Atleta.posicao");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->posicao(), target);
+  // .Gerenciador.Atleta.Posicao posicao = 2;
+  if (this->posicao() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
+      2, this->posicao(), target);
   }
 
   // int32 numCamisa = 3;
@@ -1465,18 +1478,17 @@ size_t Atleta::ByteSizeLong() const {
         this->nome());
   }
 
-  // string posicao = 2;
-  if (this->posicao().size() > 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->posicao());
-  }
-
   // string time = 5;
   if (this->time().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->time());
+  }
+
+  // .Gerenciador.Atleta.Posicao posicao = 2;
+  if (this->posicao() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::EnumSize(this->posicao());
   }
 
   // int32 numCamisa = 3;
@@ -1531,13 +1543,12 @@ void Atleta::MergeFrom(const Atleta& from) {
 
     nome_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.nome_);
   }
-  if (from.posicao().size() > 0) {
-
-    posicao_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.posicao_);
-  }
   if (from.time().size() > 0) {
 
     time_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.time_);
+  }
+  if (from.posicao() != 0) {
+    set_posicao(from.posicao());
   }
   if (from.numcamisa() != 0) {
     set_numcamisa(from.numcamisa());
@@ -1576,10 +1587,9 @@ void Atleta::InternalSwap(Atleta* other) {
   using std::swap;
   nome_.Swap(&other->nome_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
-  posicao_.Swap(&other->posicao_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
   time_.Swap(&other->time_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
+  swap(posicao_, other->posicao_);
   swap(numcamisa_, other->numcamisa_);
   swap(qtdtitulos_, other->qtdtitulos_);
   swap(idade_, other->idade_);

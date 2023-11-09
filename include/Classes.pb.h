@@ -32,6 +32,7 @@
 #include <google/protobuf/map.h>  // IWYU pragma: export
 #include <google/protobuf/map_entry.h>
 #include <google/protobuf/map_field_inl.h>
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 #define PROTOBUF_INTERNAL_EXPORT_protobuf_Classes_2eproto 
@@ -76,6 +77,30 @@ template<> ::Gerenciador::Time_Tecnico* Arena::CreateMaybeMessage<::Gerenciador:
 }  // namespace google
 namespace Gerenciador {
 
+enum Atleta_Posicao {
+  Atleta_Posicao_GOLEIRO = 0,
+  Atleta_Posicao_ZAGUEIRO = 1,
+  Atleta_Posicao_LATERAL = 2,
+  Atleta_Posicao_MEIO_CAMPO = 3,
+  Atleta_Posicao_ATACANTE = 4,
+  Atleta_Posicao_Atleta_Posicao_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  Atleta_Posicao_Atleta_Posicao_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool Atleta_Posicao_IsValid(int value);
+const Atleta_Posicao Atleta_Posicao_Posicao_MIN = Atleta_Posicao_GOLEIRO;
+const Atleta_Posicao Atleta_Posicao_Posicao_MAX = Atleta_Posicao_ATACANTE;
+const int Atleta_Posicao_Posicao_ARRAYSIZE = Atleta_Posicao_Posicao_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* Atleta_Posicao_descriptor();
+inline const ::std::string& Atleta_Posicao_Name(Atleta_Posicao value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    Atleta_Posicao_descriptor(), value);
+}
+inline bool Atleta_Posicao_Parse(
+    const ::std::string& name, Atleta_Posicao* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<Atleta_Posicao>(
+    Atleta_Posicao_descriptor(), name, value);
+}
 // ===================================================================
 
 class Time_AtletasEntry_DoNotUse : public ::google::protobuf::internal::MapEntry<Time_AtletasEntry_DoNotUse, 
@@ -466,6 +491,38 @@ class Atleta : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
 
   // nested types ----------------------------------------------------
 
+  typedef Atleta_Posicao Posicao;
+  static const Posicao GOLEIRO =
+    Atleta_Posicao_GOLEIRO;
+  static const Posicao ZAGUEIRO =
+    Atleta_Posicao_ZAGUEIRO;
+  static const Posicao LATERAL =
+    Atleta_Posicao_LATERAL;
+  static const Posicao MEIO_CAMPO =
+    Atleta_Posicao_MEIO_CAMPO;
+  static const Posicao ATACANTE =
+    Atleta_Posicao_ATACANTE;
+  static inline bool Posicao_IsValid(int value) {
+    return Atleta_Posicao_IsValid(value);
+  }
+  static const Posicao Posicao_MIN =
+    Atleta_Posicao_Posicao_MIN;
+  static const Posicao Posicao_MAX =
+    Atleta_Posicao_Posicao_MAX;
+  static const int Posicao_ARRAYSIZE =
+    Atleta_Posicao_Posicao_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor*
+  Posicao_descriptor() {
+    return Atleta_Posicao_descriptor();
+  }
+  static inline const ::std::string& Posicao_Name(Posicao value) {
+    return Atleta_Posicao_Name(value);
+  }
+  static inline bool Posicao_Parse(const ::std::string& name,
+      Posicao* value) {
+    return Atleta_Posicao_Parse(name, value);
+  }
+
   // accessors -------------------------------------------------------
 
   // string nome = 1;
@@ -482,20 +539,6 @@ class Atleta : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::std::string* release_nome();
   void set_allocated_nome(::std::string* nome);
 
-  // string posicao = 2;
-  void clear_posicao();
-  static const int kPosicaoFieldNumber = 2;
-  const ::std::string& posicao() const;
-  void set_posicao(const ::std::string& value);
-  #if LANG_CXX11
-  void set_posicao(::std::string&& value);
-  #endif
-  void set_posicao(const char* value);
-  void set_posicao(const char* value, size_t size);
-  ::std::string* mutable_posicao();
-  ::std::string* release_posicao();
-  void set_allocated_posicao(::std::string* posicao);
-
   // string time = 5;
   void clear_time();
   static const int kTimeFieldNumber = 5;
@@ -509,6 +552,12 @@ class Atleta : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::std::string* mutable_time();
   ::std::string* release_time();
   void set_allocated_time(::std::string* time);
+
+  // .Gerenciador.Atleta.Posicao posicao = 2;
+  void clear_posicao();
+  static const int kPosicaoFieldNumber = 2;
+  ::Gerenciador::Atleta_Posicao posicao() const;
+  void set_posicao(::Gerenciador::Atleta_Posicao value);
 
   // int32 numCamisa = 3;
   void clear_numcamisa();
@@ -533,8 +582,8 @@ class Atleta : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr nome_;
-  ::google::protobuf::internal::ArenaStringPtr posicao_;
   ::google::protobuf::internal::ArenaStringPtr time_;
+  int posicao_;
   ::google::protobuf::int32 numcamisa_;
   ::google::protobuf::int32 qtdtitulos_;
   ::google::protobuf::int32 idade_;
@@ -1003,57 +1052,18 @@ inline void Atleta::set_allocated_nome(::std::string* nome) {
   // @@protoc_insertion_point(field_set_allocated:Gerenciador.Atleta.nome)
 }
 
-// string posicao = 2;
+// .Gerenciador.Atleta.Posicao posicao = 2;
 inline void Atleta::clear_posicao() {
-  posicao_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  posicao_ = 0;
 }
-inline const ::std::string& Atleta::posicao() const {
+inline ::Gerenciador::Atleta_Posicao Atleta::posicao() const {
   // @@protoc_insertion_point(field_get:Gerenciador.Atleta.posicao)
-  return posicao_.GetNoArena();
+  return static_cast< ::Gerenciador::Atleta_Posicao >(posicao_);
 }
-inline void Atleta::set_posicao(const ::std::string& value) {
+inline void Atleta::set_posicao(::Gerenciador::Atleta_Posicao value) {
   
-  posicao_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  posicao_ = value;
   // @@protoc_insertion_point(field_set:Gerenciador.Atleta.posicao)
-}
-#if LANG_CXX11
-inline void Atleta::set_posicao(::std::string&& value) {
-  
-  posicao_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:Gerenciador.Atleta.posicao)
-}
-#endif
-inline void Atleta::set_posicao(const char* value) {
-  GOOGLE_DCHECK(value != NULL);
-  
-  posicao_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:Gerenciador.Atleta.posicao)
-}
-inline void Atleta::set_posicao(const char* value, size_t size) {
-  
-  posicao_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:Gerenciador.Atleta.posicao)
-}
-inline ::std::string* Atleta::mutable_posicao() {
-  
-  // @@protoc_insertion_point(field_mutable:Gerenciador.Atleta.posicao)
-  return posicao_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* Atleta::release_posicao() {
-  // @@protoc_insertion_point(field_release:Gerenciador.Atleta.posicao)
-  
-  return posicao_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void Atleta::set_allocated_posicao(::std::string* posicao) {
-  if (posicao != NULL) {
-    
-  } else {
-    
-  }
-  posicao_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), posicao);
-  // @@protoc_insertion_point(field_set_allocated:Gerenciador.Atleta.posicao)
 }
 
 // int32 numCamisa = 3;
@@ -1357,6 +1367,18 @@ inline void Message::set_allocated_args(::std::string* args) {
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace Gerenciador
+
+namespace google {
+namespace protobuf {
+
+template <> struct is_proto_enum< ::Gerenciador::Atleta_Posicao> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::Gerenciador::Atleta_Posicao>() {
+  return ::Gerenciador::Atleta_Posicao_descriptor();
+}
+
+}  // namespace protobuf
+}  // namespace google
 
 // @@protoc_insertion_point(global_scope)
 
