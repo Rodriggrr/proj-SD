@@ -7,41 +7,24 @@ class proxy:
     except:
         print("Erro ao conectar com o servidor")
 
-    def getAtleta(self, nome):
-        request = player_pb2.Player()
-        request.name = nome
-        self.doOperation(request, "getAtleta")
-
+    def getAtleta(self, atleta):
+        self.doOperation(atleta, "getAtleta")
+        
     def doOperation(self, request, method):
         msg = self.empacotaMensagem(request, method)
         self.socket.sendRequest(msg)
-        response = self.desempacotaMensagem(self.socket.getResponse())
+        response = self.desempacotaMensagem(self.socket.getResponse()).ParseFromString()
         return response
 
     def empacotaMensagem(self, request, method):
-        self.ID += 1
-        self.ultimoID = self.ID
-
-        packed_message = {
-            "ID": self.ID,
-            "method": method,
-            "request": request.SerializeToString()
-        }
-
-        return packed_message.serializeToString()
+        args = request.SerializeToString()
+        return args
     
     def desempacotaMensagem(self, msg):
-        unpacked_message = {
-            "ID": msg["ID"],
-            "method": msg["method"],
-            "response": player_pb2.Player().ParseFromString(msg["response"])
-        }
-
-        if unpacked_message["ID"] <= self.ultimoID:
-            print("Pacote duplicado detectado. Descartando pacote.")
-            return None
-        
-        return unpacked_message
+        response = Classes_pb2.Atleta()
+        response.ParseFromString(msg)
+        args = response.args()
+        return args
         
 
 
