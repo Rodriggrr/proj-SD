@@ -60,3 +60,11 @@ objRef: "Campeonato"
 methodID: "addAtleta"
 args: "\n\017Rodrigo Farinon\020\005\030\r*\tSao Paulo0\024"
 
+Received message: objRef: "Campeonato"
+methodID: "getAtleta"
+args: "\n\010Hernanes"
+
+Sending message: objRef: "Campeonato"
+methodID: "getAtleta"
+args: "\n\010Hernanes\020\004*\tSao Paulo0&"
+
