@@ -34,3 +34,29 @@ args: "\n\014Rodrigo Caua\030\014*\tSao Paulo0\023"
 Sending message: methodID: "addAtleta"
 args: "\n\014Rodrigo Caua\030\014*\tSao Paulo0\023"
 
+Received message: objRef: "Campeonato"
+methodID: "getAtleta"
+args: "\n\010Hernanes"
+
+Sending message: objRef: "Campeonato"
+methodID: "getAtleta"
+args: "\n\010Hernanes\020\004*\tSao Paulo0&"
+
+Received message: objRef: "Campeonato"
+methodID: "getAtleta"
+args: "\n\010Hernanes"
+
+Sending message: objRef: "Campeonato"
+methodID: "getAtleta"
+args: "\n\010Hernanes\020\004*\tSao Paulo0&"
+
+Received message: id: 1
+objRef: "Campeonato"
+methodID: "addAtleta"
+args: "\n\017Rodrigo Farinon\020\005\030\r*\tSao Paulo0\024"
+
+Sending message: id: 1
+objRef: "Campeonato"
+methodID: "addAtleta"
+args: "\n\017Rodrigo Farinon\020\005\030\r*\tSao Paulo0\024"
+

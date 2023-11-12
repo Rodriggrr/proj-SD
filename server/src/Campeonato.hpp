@@ -2,6 +2,9 @@
 #include "Classes.pb.h"
 
 
+// Nameapce para guardar a classe campeonato e o esqueleto.
+namespace Campeonato {
+
 /**
  * @brief Classe que representa um campeonato de futsal.
  * @note A classe Campeonato é responsável por armazenar os times e atletas do campeonato.
@@ -51,3 +54,5 @@ public:
     }
 
 };
+
+}

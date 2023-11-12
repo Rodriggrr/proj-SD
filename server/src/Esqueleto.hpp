@@ -1,3 +1,5 @@
+namespace Campeonato {
+
 struct Esqueleto {
     static Gerenciador::Atleta getAtleta(std::string nome) {
         return campeonato.getAtleta(nome);
@@ -8,3 +10,5 @@ struct Esqueleto {
         return atleta;
     }
 };
+
+}

@@ -26,42 +26,36 @@ class Proxy:
     #Função para mostrar um atleta
     def getAtleta(self, atleta):
         #Chama o método doOperation passando o objeto atleta e o respectivo método
-        bytes = self.doOperation(atleta, "getAtleta")
-        #Instancia um objeto da classe Atleta
-        atleta = Classes_pb2.Atleta()
-        #Recebe a resposta doOperation e printa no objeto atleta
-        atleta.ParseFromString(bytes)
-        print("\nAtleta {\n")
-        print(atleta)
-        print("}\n")
-
-    #Função para adicionar um atleta
-    def addAtleta(self, atleta):
-        #Chama o método doOperation passando o objeto atleta e o respectivo método
-        bytes = self.doOperation(atleta, "addAtleta")
+        bytes = self.doOperation(atleta, "getAtleta", "Campeonato")
         #Instancia um objeto da classe Atleta
         atleta = Classes_pb2.Atleta()
         #Recebe a resposta doOperation e printa no objeto atleta
         atleta.ParseFromString(bytes)
         print(colored("\n{\n\n" + str(atleta) + "\n}", "yellow"))
 
+
+    #Função para adicionar um atleta
+    def addAtleta(self, atleta):
+        bytes = self.doOperation(atleta, "addAtleta", "Campeonato")
+        atleta = Classes_pb2.Atleta()
+        atleta.ParseFromString(bytes)
+        print(colored("\n{\n\n" + str(atleta) + "\n}", "yellow"))
+
     
     #doOperation tem a função de realizar a operação em si
-    def doOperation(self, request, method):
-        #Chama os métodos empacotaMensagem
-        msg = self.empacotaMensagem(request, method)
-        #Envia a requisição empacotada para o servidor
+    def doOperation(self, request, method, objRef = None):
+        msg = self.empacotaMensagem(request, method, objRef)
         self.socket.sendRequest(msg)
-        #Recebe a resposta do servidor e chama o método desempacotaMensagem
         response = self.desempacotaMensagem(self.socket.getResponse())
         return response
 
     #empacotaMensagem tem a função de empacotar a mensagem para ser enviada ao servidor
     #adicinando o id da requisição, o método e os argumentos
-    def empacotaMensagem(self, request, method):
+    def empacotaMensagem(self, request, method, objRef = None):
         global requestID 
         message = Classes_pb2.Message()
         message.id = requestID
+        message.objRef = objRef
         message.methodID = method
         message.args = request.SerializeToString()
         return message.SerializeToString()
@@ -71,9 +65,7 @@ class Proxy:
     def desempacotaMensagem(self, msg):
         global requestID
         
-        #Instancia um objeto da classe Message
         response = Classes_pb2.Message()
-        #Faz o parse da mensagem recebida do servidor
         response.ParseFromString(msg)
         
         if response.error == 1:

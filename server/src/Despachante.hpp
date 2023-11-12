@@ -1,6 +1,4 @@
-#include "Esqueleto.hpp"
-
-struct Despachante : Esqueleto {
+struct Despachante {
 
     /**
      * @brief Empacota uma mensagem para ser enviada ao cliente
@@ -8,7 +6,6 @@ struct Despachante : Esqueleto {
      * @param args Argumentos da mensagem (retorno do método)
      * @param error Se a mensagem é de erro ou não
      */ 
-
     static Gerenciador::Message empacotaMensagem(Gerenciador::Message message, std::string args, bool error = false) {
         Gerenciador::Message response;
         response.set_error(error);
@@ -20,25 +17,32 @@ struct Despachante : Esqueleto {
     }
 
     /**
-     * @brief Invoca o método correto do esqueleto e envia a mensagem de resposta, ou de erro, para o cliente.
+     * @brief Invoca o método correto do esqueleto de uma classe e envia a mensagem de resposta, ou de erro, para o cliente.
      * @param request Mensagem recebida do cliente
      * @return Gerenciador::Message com a resposta do método, ou de erro.
      */
-    
     static Gerenciador::Message invoke(Gerenciador::Message request){
+        auto objref = request.objref();
         auto arg = request.methodid();
-        if(arg == "getAtleta") {
-            Gerenciador::Atleta atleta;
-            atleta.ParseFromString(request.args());
-            return empacotaMensagem(request, Esqueleto::getAtleta(atleta.nome()).SerializeAsString());
-        }
-        
-        if(arg == "addAtleta") {
-            Gerenciador::Atleta atleta;
-            atleta.ParseFromString(request.args());
-            return empacotaMensagem(request, Esqueleto::addAtleta(atleta).SerializeAsString());
+
+        // Se o objeto for "Campeonato", invoca o método correto do esqueleto e retorna a mensagem de resposta.
+        if(objref == "Campeonato") {
+
+            if(arg == "getAtleta") {
+                Gerenciador::Atleta atleta;
+                atleta.ParseFromString(request.args());
+                return empacotaMensagem(request, Campeonato::Esqueleto::getAtleta(atleta.nome()).SerializeAsString());
+            }
+            
+            if(arg == "addAtleta") {
+                Gerenciador::Atleta atleta;
+                atleta.ParseFromString(request.args());
+                return empacotaMensagem(request, Campeonato::Esqueleto::addAtleta(atleta).SerializeAsString());
+            }
+
+            return empacotaMensagem(request, "Método não encontrado, revise seu código.", true);
         }
 
-        return empacotaMensagem(request, "Método não encontrado, revise seu código.", true);
+        return empacotaMensagem(request, "Objeto não encontrado, revise seu código.", true);
     }
 };

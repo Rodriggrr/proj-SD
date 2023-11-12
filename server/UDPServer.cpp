@@ -1,13 +1,56 @@
-#include "src/DatagramSocket.hpp"
-
 #include "src/Campeonato.hpp"
-Campeonato campeonato;
+Campeonato::Campeonato campeonato;
 
+#include "src/Esqueleto.hpp"
+
+#include "src/DatagramSocket.hpp"
 #include "src/Despachante.hpp"
+#include "src/fn.hpp"
+
+#include <iostream>
+
 using namespace Gerenciador;
 
-#include "src/fn.hpp"
-#include <iostream>
+Message getRequest(std::pair<int, char*> request);
+
+int main(){
+    DatagramSocket socket(49110);
+
+    // Inicialização do campeonato, com um time e um atleta. (Para testes)
+    Time time;
+    time.set_nome("Sao Paulo");
+    time.set_pontos(6);
+    time.set_qtdjogos(2);
+    campeonato.addTime(time);
+    Atleta atleta;
+    atleta.set_nome("Hernanes");
+    atleta.set_idade(38);
+    atleta.set_time("Sao Paulo");
+    atleta.set_posicao(Gerenciador::Atleta_Posicao_ATACANTE);
+
+    campeonato.addAtleta(atleta.time(), atleta);
+
+    // Loop básico de recebimento de mensagens
+    while(true){
+        Message message;
+        try{
+            
+            // Recebe a mensagem e a parseia para um objeto Message e a imprime.
+            message = getRequest(socket.recv());
+            std::cout << "Received message: " << message.DebugString() << std::endl;
+
+            // Invoca o método correto e envia a mensagem de resposta, ou de erro, para o cliente.
+            Message sendMsg = Despachante::invoke(message);
+            std::cout << "Sending message: " << sendMsg.DebugString() << std::endl;
+            socket.sendTo(*socket.getAddress(), sendMsg.SerializeAsString());
+
+        // Caso ocorra algum erro, envia uma mensagem de erro para o cliente.
+        } catch(std::runtime_error& e){
+            std::cout << "Sending error message: " << e.what() << std::endl;
+            socket.sendTo(*socket.getAddress(), Despachante::empacotaMensagem(message, e.what(), true).SerializeAsString());
+        }
+    }
+}
 
 /**
  * @brief Recebe uma mensagem e retorna um objeto Message
@@ -32,43 +75,4 @@ Message getRequest(std::pair<int, char*> request){
         throw std::runtime_error("Failed to parse message");
     }
     return message;
-}
-
-int main(){
-    DatagramSocket socket(49110);
-
-    // Inicialização do campeonato, com um time e um atleta. (Para testes)
-    Time time;
-    time.set_nome("Sao Paulo");
-    time.set_pontos(6);
-    time.set_qtdjogos(2);
-    campeonato.addTime(time);
-    Atleta atleta;
-    atleta.set_nome("Hernanes");
-    atleta.set_idade(38);
-    atleta.set_time("Sao Paulo");
-    atleta.set_posicao(Gerenciador::Atleta_Posicao_ATACANTE);
-
-    campeonato.addAtleta(atleta.time(), atleta);
-
-    // Loop básico de recebimento de mensagens
-    while(true){
-        Message message;
-        try{
-            
-            // Recebe a mensagem e a parseia para um objeto Message e a imprime
-            message = getRequest(socket.recv());
-            std::cout << "Received message: " << message.DebugString() << std::endl;
-
-            // Invoca o método correto e envia a mensagem de resposta, ou de erro, para o cliente.
-            Message sendMsg = Despachante::invoke(message);
-            std::cout << "Sending message: " << sendMsg.DebugString() << std::endl;
-            socket.sendTo(*socket.getAddress(), sendMsg.SerializeAsString());
-
-        // Caso ocorra algum erro, envia uma mensagem de erro para o cliente.
-        } catch(std::runtime_error& e){
-            std::cout << "Sending error message: " << e.what() << std::endl;
-            socket.sendTo(*socket.getAddress(), Despachante::empacotaMensagem(message, e.what(), true).SerializeAsString());
-        }
-    }
 }
