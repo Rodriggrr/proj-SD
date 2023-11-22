@@ -33,7 +33,6 @@ class Proxy:
         atleta.ParseFromString(bytes)
         print(colored("\n{\n\n" + str(atleta) + "\n}", "yellow"))
 
-
     #Função para adicionar um atleta
     def addAtleta(self, atleta):
         bytes = self.doOperation(atleta, "addAtleta", "Campeonato")
@@ -41,6 +40,17 @@ class Proxy:
         atleta.ParseFromString(bytes)
         print(colored("\n{\n\n" + str(atleta) + "\n}", "yellow"))
 
+    def getTime(self, time):
+        bytes = self.doOperation(time, "getTime", "Campeonato")
+        time = Classes_pb2.Time()
+        time.ParseFromString(bytes)
+        print(colored("\n{\n\n" + str(time) + "\n}", "yellow"))
+
+    def addTime(self, time):
+        bytes = self.doOperation(time, "addTime", "Campeonato")
+        time = Classes_pb2.Time()
+        time.ParseFromString(bytes)
+        print(colored("\n{\n\n" + str(time) + "\n}", "yellow"))
     
     #doOperation tem a função de realizar a operação em si
     def doOperation(self, request, method, objRef = None):

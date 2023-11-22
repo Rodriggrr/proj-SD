@@ -13,12 +13,15 @@ class PlayerClient:
         print("""
 1 - Listar Jogadores
 2 - Adicionar Jogador
+3 - Listar Times
+4 - Adicionar Time
 """)
         option = input("Digite a opção desejada: ")
 
         if option == "1":
             atleta.nome      = input("Digite o nome do atleta: ")
             self.proxy.getAtleta(atleta)
+        
         elif option =="2":
             atleta.nome      = input("Digite o nome do atleta: ")
             atleta.idade     = int(input("Digite a idade do atleta: "))
@@ -47,6 +50,19 @@ Digite a Posição:
             atleta.numCamisa = int(input("Digite o número da camisa do atleta: "))
             atleta.time = input("Digite o time do atleta: ")
             self.proxy.addAtleta(atleta)
+
+        elif option == "3":
+            time.nome = input("Digite o nome do time: ")
+            self.proxy.getTime(time)
+
+        elif option == "4":
+            time.nome = input("Digite o nome do time: ")
+            time.tecnico = input("Digite o nome do técnico: ")
+            time.pontos = int(input("Digite a pontuação do time: "))
+            time.qtdJogos = int(input("Digite a quantidade de jogos do time: "))
+
+            self.proxy.addTime(time)
+
         else:
             print("Opção inválida")
             self.menu()
@@ -56,6 +72,7 @@ Digite a Posição:
 
 #Instancia um objeto da classe Atleta
 atleta = Classes_pb2.Atleta()
+time = Classes_pb2.Time()
 
 def main():
     
