@@ -1,19 +1,26 @@
 import Classes_pb2
+import sys
 from PlayerProxy import *
 from interface import *
 
 class PlayerClient:
 
-    proxy = Proxy()
+    campeonato = Proxy()
 
     def menu(self):
-        print(""" Selecione uma opção:
-        1 - Adicionar Time
-        2 - Pesquisar Time
-        3 - Adicionar Atleta
-        4 - Pesquisar Atleta
-        5 - Pesquisar Técnico """)
-        op = int(input("Digite a opção: "))
+        # limpa a tela
+        print("\033c")
+
+        print(""" 
+Selecione uma opção:
+              
+1 - Adicionar Time
+2 - Pesquisar Time
+3 - Adicionar Atleta
+4 - Pesquisar Atleta
+5 - Pesquisar Técnico 
+              """)
+        op = int(input(">> "))
     
         if op == 1:
             time.nome = input("Digite o nome do time: ")
@@ -24,11 +31,11 @@ class PlayerClient:
             time.pontos = int(input("Digite a quantidade de pontos do time: "))
             time.qtdJogos = int(input("Digite a quantidade de jogos do time: "))
 
-            self.proxy.addTime(time)
+            self.campeonato.addTime(time)
 
         elif op == 2:
             time.nome = input("Digite o nome do time: ")
-            self.proxy.getTime(time)
+            self.campeonato.getTime(time)
         
         elif op == 3:
             atleta.nome      = input("Digite o nome do atleta: ")
@@ -57,15 +64,15 @@ Digite a Posição:
                 
             atleta.numCamisa = int(input("Digite o número da camisa do atleta: "))
             atleta.time = input("Digite o time do atleta: ")
-            self.proxy.addAtleta(atleta)
+            self.campeonato.addAtleta(atleta)
         
         elif op == 4:
             atleta.nome = input("Digite o nome do atleta: ")
-            self.proxy.getAtleta(atleta) 
+            self.campeonato.getAtleta(atleta) 
         
         elif op == 5:
             time.nome = input("Digite o nome do time do tecnico: ")
-            self.proxy.getTecnico(time)
+            self.campeonato.getTecnico(time)
 
     def inter(self):
         interface = Interface()
@@ -81,8 +88,8 @@ def main():
         try:
             #É criado um objeto da classe PlayerClient e chama o método menu()
             client = PlayerClient()
-            client.inter()
-            # client.menu()
+            # client.inter()
+            client.menu()
         except ServerTimedOutException as e:
             #Caso o servidor não responda dentro do tempo limite, o programa é encerrado por timeout
             print("Erro: " + str(e))
@@ -94,4 +101,6 @@ def main():
             #Descarta a mensagem duplicada
             print(e) 
         
+        print("Pressione ENTER para continuar...")
+        input()
 main()

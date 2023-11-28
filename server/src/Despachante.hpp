@@ -1,20 +1,18 @@
 #include <functional>
 #include <map>
 
-
 struct Despachante {
 
     using FuncaoEsqueleto = std::function<std::string(const std::string&)>;
 
     /**
-     * @brief Inicializa o mapa de funções do esqueleto.
+     * @brief Inicializa o mapa de funções do esqueleto. Feito para imitar a reflexão.
      * @note Para adicionar uma nova função, basta adicionar uma nova entrada no mapaDeFuncoes.
      */
     void inicializarMapaDeFuncoes() {
         mapaDeFuncoes[{"Campeonato", "getAtleta"}] = [](const std::string& args) {
             Gerenciador::Atleta atleta;
             atleta.ParseFromString(args);
-            std::cout << atleta.DebugString();
             return Campeonato::Esqueleto::getAtleta(atleta.nome()).SerializeAsString();
         };
 

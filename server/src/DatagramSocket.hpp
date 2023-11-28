@@ -96,4 +96,8 @@ public:
     sockaddr_in* getAddress(){
         return &address;
     }
+
+    int getPort(){
+        return port;
+    }
 };
