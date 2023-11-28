@@ -16,12 +16,12 @@ class PlayerClient:
     
         if op == 1:
             time.nome = input("Digite o nome do time: ")
-            tecnico.nome = input("Digite o nome do técnico: ")
-            tecnico.idade = int(input("Digite a idade do técnico: "))
-            tecnico.qtdTitulos = int(input("Digite a quantidade de títulos: "))
+            tecnico.nome = input(colored("Digite o nome do técnico: ", "blue"))
+            tecnico.idade = int(input(colored("Digite a idade do técnico: ", "blue")))
+            tecnico.qtdTitulos = int(input(colored("Digite a quantidade de títulos do técnico: ", "blue")))
             time.tecnico = tecnico.SerializeToString()
-            time.pontos = int(input("Digite a quantidade de pontos: "))
-            time.qtdJogos = int(input("Digite a quantidade de jogos: "))
+            time.pontos = int(input("Digite a quantidade de pontos do time: "))
+            time.qtdJogos = int(input("Digite a quantidade de jogos do time: "))
 
             self.proxy.addTime(time)
 

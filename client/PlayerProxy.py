@@ -53,6 +53,12 @@ class Proxy:
         time.ParseFromString(bytes)
         print(colored("\n{\n\n" + str(time) + "\n}", "yellow"))
     
+    def getTecnico(self, time):
+        bytes = self.doOperation(time, "getTecnico", "Campeonato")
+        tecnico = time.Tecnico()
+        tecnico.ParseFromString(bytes)
+        print(colored("\n{\n\n" + str(tecnico) + "\n}", "yellow"))
+
     #doOperation tem a função de realizar a operação em si
     def doOperation(self, request, method, objRef = None):
         msg = self.empacotaMensagem(request, method, objRef)
