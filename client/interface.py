@@ -66,7 +66,8 @@ class Interface:
         nome.place(x=370, y=100)
         atleta.nome = nome.get()
         
-        pesquisar = tk.Button(window, text="Pesquisar", command=self.proxy.getAtleta(atleta))
+        pesquisar = tk.Button(window, text="Pesquisar", command=None)
+        
         pesquisar.pack()
     
     def adicionarPlayer(self):
