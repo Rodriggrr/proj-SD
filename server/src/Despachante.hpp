@@ -40,6 +40,18 @@ struct Despachante {
                 return empacotaMensagem(request, Campeonato::Esqueleto::addAtleta(atleta).SerializeAsString());
             }
 
+            if(arg == "getTime") {
+                Gerenciador::Time time;
+                time.ParseFromString(request.args());
+                return empacotaMensagem(request, Campeonato::Esqueleto::getTime(time.nome()).SerializeAsString());
+            }
+
+            if(arg == "addTime") {
+                Gerenciador::Time time;
+                time.ParseFromString(request.args());
+                return empacotaMensagem(request, Campeonato::Esqueleto::addTime(time).SerializeAsString());
+            }
+
             return empacotaMensagem(request, "Método não encontrado, revise seu código.", true);
         }
 

@@ -19,15 +19,15 @@ int main(){
 
     DatagramSocket socket(49110);
 
-    // Inicialização do campeonato, com um time e um atleta. (Para testes)
+    // Inicialização do campeonato, com um time, um tecnico e um atleta. (Para testes)
     Time time;
     time.set_nome("Sao Paulo");
     time.set_pontos(6);
     time.set_qtdjogos(2);
     Time::Tecnico tecnico;
-    tecnico.set_nome("Joaquim");
-    tecnico.set_idade(42);
-    tecnico.set_qtdtitulos(11);
+    tecnico.set_nome("Dorival");
+    tecnico.set_idade(61);
+    tecnico.set_qtdtitulos(6);
     time.set_tecnico(tecnico.SerializeAsString().c_str());
 
 

@@ -28,9 +28,9 @@ public:
 
     // Adiciona um atleta à lista de atletas do time passado por parâmetro
     void addAtleta(std::string time, Gerenciador::Atleta atleta){
-        for(int i = 0; i < times.size(); i++){
-            if (times[i].nome() == time){
-                times[i].mutable_atletas()->insert({atleta.nome(), atleta});
+        for(auto a : times){
+            if (a.nome() == time){
+                a.mutable_atletas()->insert({atleta.nome(), atleta});
                 return;
             }
         }
@@ -41,6 +41,7 @@ public:
         times.push_back(time);
     }
 
+    // Retorna um time.
     Gerenciador::Time getTime(std::string nome) {
         for(auto a : times) {
             if(a.nome() == nome)
@@ -49,11 +50,12 @@ public:
         throw std::runtime_error("Time não encontrado");
     }
 
+    // Retorna o técnico de um time.
     Gerenciador::Time::Tecnico getTecnico(std::string nomeTime) {
-        for(int i = 0; i < times.size(); i++){
-            if (times[i].nome() == nomeTime){
+        for(auto a : times){
+            if (a.nome() == nomeTime){
                 Gerenciador::Time::Tecnico tecnico;
-                tecnico.ParseFromString(times[i].tecnico());
+                tecnico.ParseFromString(a.tecnico());
                 return tecnico;
             }
         }
