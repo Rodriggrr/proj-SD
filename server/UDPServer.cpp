@@ -39,6 +39,10 @@ int main(){
     campeonato.addAtleta(atleta.time(), atleta);
 
 
+    Despachante dispatcher;
+
+    //Inicializa o simulador de reflexão.
+    dispatcher.inicializarMapaDeFuncoes();
 
     // Loop básico de recebimento de mensagens
     while(true){
@@ -68,12 +72,12 @@ int main(){
             std::cout << message.DebugString();
 
             // Invoca o método correto e envia a mensagem de resposta, ou de erro, para o cliente.
-            Message sendMsg = Despachante::invoke(message);
+            Message sendMsg = dispatcher.invoke(message);
             socket.sendTo(*socket.getAddress(), sendMsg.SerializeAsString());
 
 
             if (duped) {
-                Message sendMsg = Despachante::invoke(message);
+                Message sendMsg = dispatcher.invoke(message);
                 socket.sendTo(*socket.getAddress(), sendMsg.SerializeAsString());
             }
 

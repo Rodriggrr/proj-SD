@@ -1,4 +1,51 @@
+#include <functional>
+#include <map>
+
+
 struct Despachante {
+
+    using FuncaoEsqueleto = std::function<std::string(const std::string&)>;
+
+    /**
+     * @brief Inicializa o mapa de funções do esqueleto.
+     * @note Para adicionar uma nova função, basta adicionar uma nova entrada no mapaDeFuncoes.
+     */
+    void inicializarMapaDeFuncoes() {
+    // Associe cada par (objref, methodid) a uma função do esqueleto
+    mapaDeFuncoes[{"Campeonato", "getAtleta"}] = [](const std::string& args) {
+        Gerenciador::Atleta atleta;
+        atleta.ParseFromString(args);
+        std::cout << atleta.DebugString();
+        return Campeonato::Esqueleto::getAtleta(atleta.nome()).SerializeAsString();
+    };
+
+    mapaDeFuncoes[{"Campeonato", "addAtleta"}] = [](const std::string& args) {
+        Gerenciador::Atleta atleta;
+        atleta.ParseFromString(args);
+        return Campeonato::Esqueleto::addAtleta(atleta).SerializeAsString();
+    };
+
+    mapaDeFuncoes[{"Campeonato", "getTime"}] = [](const std::string& args) {
+        Gerenciador::Time time;
+        time.ParseFromString(args);
+        return Campeonato::Esqueleto::getTime(time.nome()).SerializeAsString();
+    };
+
+    mapaDeFuncoes[{"Campeonato", "addTime"}] = [](const std::string& args) {
+        Gerenciador::Time time;
+        time.ParseFromString(args);
+        return Campeonato::Esqueleto::addTime(time).SerializeAsString();
+    };
+
+    mapaDeFuncoes[{"Campeonato", "getTecnico"}] = [](const std::string& args) {
+        Gerenciador::Time time;
+        time.ParseFromString(args);
+        return Campeonato::Esqueleto::getTecnico(time.nome()).SerializeAsString();
+    };
+}
+
+    // Mapeia pares (objref, methodid) para funções do esqueleto
+    std::map<std::pair<std::string, std::string>, FuncaoEsqueleto> mapaDeFuncoes;
 
     /**
      * @brief Empacota uma mensagem para ser enviada ao cliente
@@ -21,41 +68,18 @@ struct Despachante {
      * @param request Mensagem recebida do cliente
      * @return Gerenciador::Message com a resposta do método, ou de erro.
      */
-    static Gerenciador::Message invoke(Gerenciador::Message request){
-        auto objref = request.objref();
-        auto arg = request.methodid();
+    Gerenciador::Message invoke(Gerenciador::Message request){
+            auto objref = request.objref();
+            auto methodid = request.methodid();
+            auto args = request.args();
 
-        // Se o objeto for "Campeonato", invoca o método correto do esqueleto e retorna a mensagem de resposta.
-        if(objref == "Campeonato") {
-
-            if(arg == "getAtleta") {
-                Gerenciador::Atleta atleta;
-                atleta.ParseFromString(request.args());
-                std::cout << atleta.DebugString();
-                return empacotaMensagem(request, Campeonato::Esqueleto::getAtleta(atleta.nome()).SerializeAsString());
+            auto it = mapaDeFuncoes.find({objref, methodid});
+            if (it != mapaDeFuncoes.end()) {
+                // Chama a função do esqueleto associada ao par (objref, methodid)
+                std::string resultado = it->second(args);
+                return empacotaMensagem(request, resultado);
+            } else {
+                return empacotaMensagem(request, "Método não encontrado, revise seu código.", true);
             }
-            
-            if(arg == "addAtleta") {
-                Gerenciador::Atleta atleta;
-                atleta.ParseFromString(request.args());
-                return empacotaMensagem(request, Campeonato::Esqueleto::addAtleta(atleta).SerializeAsString());
-            }
-
-            if(arg == "getTime") {
-                Gerenciador::Time time;
-                time.ParseFromString(request.args());
-                return empacotaMensagem(request, Campeonato::Esqueleto::getTime(time.nome()).SerializeAsString());
-            }
-
-            if(arg == "addTime") {
-                Gerenciador::Time time;
-                time.ParseFromString(request.args());
-                return empacotaMensagem(request, Campeonato::Esqueleto::addTime(time).SerializeAsString());
-            }
-
-            return empacotaMensagem(request, "Método não encontrado, revise seu código.", true);
-        }
-
-        return empacotaMensagem(request, "Objeto não encontrado, revise seu código.", true);
     }
 };
