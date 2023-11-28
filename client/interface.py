@@ -6,7 +6,7 @@ from PIL import Image, ImageTk
 class Interface:
     proxy = Proxy()
 
-    def Janela(self):
+    def Janela():
         def centralizeWindow(janela):
             janela.update_idletasks()
             width = janela.winfo_width()
