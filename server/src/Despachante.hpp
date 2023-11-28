@@ -31,6 +31,7 @@ struct Despachante {
             if(arg == "getAtleta") {
                 Gerenciador::Atleta atleta;
                 atleta.ParseFromString(request.args());
+                std::cout << atleta.DebugString();
                 return empacotaMensagem(request, Campeonato::Esqueleto::getAtleta(atleta.nome()).SerializeAsString());
             }
             

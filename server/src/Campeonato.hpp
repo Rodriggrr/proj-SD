@@ -16,7 +16,7 @@ public:
 
     // Retorna o atleta com o nome passado por parâmetro
     Gerenciador::Atleta getAtleta(std::string nome){
-        for (auto time : times){
+        for (auto time : times) {
             for (auto atleta : time.atletas()){
                 if (atleta.first == nome){
                     return atleta.second;
@@ -28,14 +28,15 @@ public:
 
     // Adiciona um atleta à lista de atletas do time passado por parâmetro
     void addAtleta(std::string time, Gerenciador::Atleta atleta){
-        for(auto a : times){
-            if (a.nome() == time){
-                a.mutable_atletas()->insert({atleta.nome(), atleta});
+        for(int i = 0; i < times.size(); i++){
+            if (times[i].nome() == time){
+                times[i].mutable_atletas()->insert({atleta.nome(), atleta});
                 return;
             }
         }
         throw std::runtime_error("Time não encontrado");
     }
+
     // Adiciona um time à lista de times do campeonato
     void addTime(Gerenciador::Time time){
         times.push_back(time);

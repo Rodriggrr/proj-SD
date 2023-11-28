@@ -24,18 +24,18 @@ int main(){
     time.set_nome("Sao Paulo");
     time.set_pontos(6);
     time.set_qtdjogos(2);
-    // Time::Tecnico tecnico;
-    // tecnico.set_nome("Dorival");
-    // tecnico.set_idade(61);
-    // tecnico.set_qtdtitulos(6);
-    // time.set_tecnico(tecnico.SerializeAsString().c_str());
+    Time::Tecnico tecnico;
+    tecnico.set_nome("Dorival");
+    tecnico.set_idade(61);
+    tecnico.set_qtdtitulos(6);
+    time.set_tecnico(tecnico.SerializeAsString().c_str());
     campeonato.addTime(time);
     Atleta atleta;
     atleta.set_nome("Hernanes");
     atleta.set_idade(38);
+    atleta.set_numcamisa(15);
     atleta.set_time("Sao Paulo");
     atleta.set_posicao(Gerenciador::Atleta_Posicao_ATACANTE);
-
     campeonato.addAtleta(atleta.time(), atleta);
 
 
@@ -43,21 +43,18 @@ int main(){
     // Loop básico de recebimento de mensagens
     while(true){
         Message message;
+
         std::thread t([&]() {
             while(true) {
                 std::cout << "Debug:\n"
-                        << "1 - Começar a  enviar pacotes duplicados\n"
-                        << "2 - Parar de enviar pacotes duplicados\n"
-                        << "3 - Desligar o servidor\n";
+                        << "1 - Enviar pacotes duplicados" << ((duped) ? " (ON)" : "") << "\n"
+                        << "2 - Desligar o servidor\n";
                 int choice;
                 std::cin >> choice;
                 if(choice == 1) {
-                    duped = true;
+                    duped = (duped) ? false : true;
                 }
-                else if(choice == 2) {
-                    duped = false;
-                }
-                else exit(0);
+                else if (choice == 2) exit(0);
             }
         });
 
@@ -68,18 +65,12 @@ int main(){
             // Recebe a mensagem e a parseia para um objeto Message e a imprime.
             message = getRequest(socket.recv());
 
-            std::cout << message.DebugString();
-
             // Invoca o método correto e envia a mensagem de resposta, ou de erro, para o cliente.
-
             Message sendMsg = Despachante::invoke(message);
             socket.sendTo(*socket.getAddress(), sendMsg.SerializeAsString());
 
-            std::cout << sendMsg.DebugString();
 
-
-            while(duped) {
-                usleep(500);
+            if (duped) {
                 Message sendMsg = Despachante::invoke(message);
                 socket.sendTo(*socket.getAddress(), sendMsg.SerializeAsString());
             }
