@@ -1,5 +1,6 @@
 import Classes_pb2
 from PlayerProxy import *
+from interface import *
 
 class PlayerClient:
 
@@ -66,7 +67,6 @@ Digite a Posição:
             time.nome = input("Digite o nome do time do tecnico: ")
             self.proxy.getTecnico(time)
 
-
 atleta = Classes_pb2.Atleta()
 time = Classes_pb2.Time()
 tecnico = time.Tecnico()
@@ -77,7 +77,8 @@ def main():
         try:
             #É criado um objeto da classe PlayerClient e chama o método menu()
             client = PlayerClient()
-            client.menu()
+            Interface.Janela()
+            # client.menu()
         except ServerTimedOutException as e:
             #Caso o servidor não responda dentro do tempo limite, o programa é encerrado por timeout
             print("Erro: " + str(e))
