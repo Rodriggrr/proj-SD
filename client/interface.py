@@ -1,12 +1,45 @@
 import tkinter as tk
 import Classes_pb2
 from PlayerProxy import *
+from PIL import Image, ImageTk
 
-class Options:
+class Interface:
     proxy = Proxy()
 
-    
-    
+    def Janela(self):
+        def centralizeWindow(janela):
+            janela.update_idletasks()
+            width = janela.winfo_width()
+            height = janela.winfo_height()
+            x = (janela.winfo_screenwidth() // 2) - (width // 2)
+            y = (janela.winfo_screenheight() // 2) - (height // 2)
+            janela.geometry('{}x{}+{}+{}'.format(width, height, x, y))
+        
+        janela = tk.Tk()
+        janela.title("Campeonato")
+        janela.geometry("690x514")
+        centralizeWindow(janela)
+
+        imgPillow = Image.open('img.gif')
+        img = ImageTk.PhotoImage(imgPillow)
+
+        canvas = tk.Canvas(janela, width=img.width(), height=img.height())
+        canvas.pack()
+        canvas.create_image(0, 0, anchor=tk.NW, image=img)
+
+        pesquisarPlayer = tk.Button(janela, text="Pesquisar", command=self.pesquisarPlayer)
+        addPlayer = tk.Button(janela, text="Adicionar", command=self.adicionarPlayer)
+        pesquisarTime = tk.Button(janela, text="Pesquisar", command=self.pesquisarTime)
+        addTime = tk.Button(janela, text="Adicionar", command=self.adicionarTime)
+
+        # Place the buttons on top of the image
+        pesquisarPlayer.place(x=170, y=100)
+        addPlayer.place(x=400, y=100)
+        pesquisarTime.place(x=172, y=240)
+        addTime.place(x=400, y=240)
+
+        janela.mainloop()
+      
     def pesquisarPlayer(self):
         atleta.nome      = input("Digite o nome do atleta: ")
         self.proxy.getAtleta(atleta)
@@ -17,7 +50,7 @@ class Options:
             
         posicao = input("""
 Digite a Posição:
-                             
+                            
 1 - Goleiro
 2 - Zagueiro
 3 - Lateral
@@ -55,3 +88,17 @@ Digite a Posição:
 
 atleta = Classes_pb2.Atleta()
 time = Classes_pb2.Time()
+
+
+
+
+
+
+
+
+#         print("""
+# 1 - Listar Jogadores
+# 2 - Adicionar Jogador
+# 3 - Listar Times
+# 4 - Adicionar Time
+# """)

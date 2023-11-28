@@ -1,63 +1,15 @@
-from options import *
-import tkinter as tk
-from tkinter import PhotoImage
-from PIL import Image, ImageTk
-
+from interface import *
 
 #Código que deve ser executado pelo cliente
 #onde cria uma instância da classe Proxy e chama os métodos
 
 class PlayerClient:
-    #Cria uma instância da classe Proxy
-    proxy = Proxy()
 
-    #Inicia o programa mostrando o menu de opções
     def menu(self):
-
-        def centralizeWindow(janela):
-            janela.update_idletasks()
-            width = janela.winfo_width()
-            height = janela.winfo_height()
-            x = (janela.winfo_screenwidth() // 2) - (width // 2)
-            y = (janela.winfo_screenheight() // 2) - (height // 2)
-            janela.geometry('{}x{}+{}+{}'.format(width, height, x, y))
-
-        print("""
-1 - Listar Jogadores
-2 - Adicionar Jogador
-3 - Listar Times
-4 - Adicionar Time
-""")
+        Interface.Janela(self)
         
-        janela = tk.Tk()
-        janela.title("Campeonato")
-        janela.geometry("690x514")
-        centralizeWindow(janela)
-
-        #para os botes sobrepor a imagem:
-        imgPillow = Image.open('img.gif')
-        img = ImageTk.PhotoImage(imgPillow)
-
-        canvas = tk.Canvas(janela, width=img.width(), height=img.height())
-        canvas.pack()
-        canvas.create_image(0, 0, anchor=tk.NW, image=img)
-
-        pesquisarPlayer = tk.Button(janela, text="Pesquisar", command=op.pesquisarPlayer)
-        addPlayer = tk.Button(janela, text="Adicionar", command=op.adicionarPlayer)
-        pesquisarTime = tk.Button(janela, text="Pesquisar", command=op.pesquisarTime)
-        addTime = tk.Button(janela, text="Adicionar", command=op.adicionarTime)
-
-        # Place the buttons on top of the image
-        pesquisarPlayer.place(x=170, y=100)
-        addPlayer.place(x=400, y=100)
-        pesquisarTime.place(x=172, y=240)
-        addTime.place(x=400, y=240)
-
-        janela.mainloop()
-        
-
 #Instancia um objeto da classe Atleta
-op = Options()
+op = Interface()
 
 def main():
     
