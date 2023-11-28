@@ -153,6 +153,7 @@ class Interface:
             nome.place(x=190, y=100)
             
             time = Classes_pb2.Time()
+            
             texto = tk.Text(window, height=5, width=5)
             texto.pack()
     
@@ -160,20 +161,11 @@ class Interface:
                 def changeName(nome, time):
                     time.nome = nome
                     return time
-                resultado = str(self.proxy.getTime(changeName(nome.get(), time)))
-                label.config(text=resultado)
-
-            def doOp():
-                def changeName(nome, time):
-                    time.nome = nome
-                    return time
                 resultado = self.proxy.getTime(changeName(nome.get(), time))
-                dados_dict = MessageToDict(resultado)
-                texto.delete(1.0, tk.END)  # Limpa o texto existente
+                print(resultado)
+                resu = str(resultado)
+                texto.insert(tk.END, resu)
 
-                for chave, valor in dados_dict.items():
-                    texto.insert(tk.END, f"{chave}: {valor}\n\n")
-        
             button = tk.Button(window, text="Pesquisar", command=lambda: doOp(self))
             button.place(x=230, y=150)
             label = tk.Label(window, text="")
