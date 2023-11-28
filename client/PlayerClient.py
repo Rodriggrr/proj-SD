@@ -1,7 +1,8 @@
-from PlayerProxy import *
-import Classes_pb2
 from options import *
 import tkinter as tk
+from tkinter import PhotoImage
+from PIL import Image, ImageTk
+
 
 #Código que deve ser executado pelo cliente
 #onde cria uma instância da classe Proxy e chama os métodos
@@ -12,6 +13,15 @@ class PlayerClient:
 
     #Inicia o programa mostrando o menu de opções
     def menu(self):
+
+        def centralizeWindow(janela):
+            janela.update_idletasks()
+            width = janela.winfo_width()
+            height = janela.winfo_height()
+            x = (janela.winfo_screenwidth() // 2) - (width // 2)
+            y = (janela.winfo_screenheight() // 2) - (height // 2)
+            janela.geometry('{}x{}+{}+{}'.format(width, height, x, y))
+
         print("""
 1 - Listar Jogadores
 2 - Adicionar Jogador
@@ -21,23 +31,32 @@ class PlayerClient:
         
         janela = tk.Tk()
         janela.title("Campeonato")
-        janela.geometry("500x500")
-        
+        janela.geometry("690x514")
+        centralizeWindow(janela)
+
+        #para os botes sobrepor a imagem:
+        imgPillow = Image.open('img.gif')
+        img = ImageTk.PhotoImage(imgPillow)
+
+        canvas = tk.Canvas(janela, width=img.width(), height=img.height())
+        canvas.pack()
+        canvas.create_image(0, 0, anchor=tk.NW, image=img)
+
         pesquisarPlayer = tk.Button(janela, text="Pesquisar", command=op.pesquisarPlayer)
         addPlayer = tk.Button(janela, text="Adicionar", command=op.adicionarPlayer)
         pesquisarTime = tk.Button(janela, text="Pesquisar", command=op.pesquisarTime)
         addTime = tk.Button(janela, text="Adicionar", command=op.adicionarTime)
-        pesquisarPlayer.pack()
-        addPlayer.pack()
-        pesquisarTime.pack()
-        addTime.pack()
+
+        # Place the buttons on top of the image
+        pesquisarPlayer.place(x=100, y=100)
+        addPlayer.place(x=200, y=100)
+        pesquisarTime.place(x=100, y=200)
+        addTime.place(x=200, y=200)
 
         janela.mainloop()
         
 
 #Instancia um objeto da classe Atleta
-atleta = Classes_pb2.Atleta()
-time = Classes_pb2.Time()
 op = Options()
 
 def main():
