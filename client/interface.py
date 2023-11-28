@@ -53,10 +53,11 @@ class Interface:
         canvas.pack()
         canvas.create_image(0, 0, anchor=tk.NW, image=img)
 
-        nome = tk.Label(window, text="Nome:")
-        nome.pack()
-        button = tk.Button(window, text="OK", command=window.destroy)
-        button.pack()
+        nome = tk.Entry(window)
+        nome.place(x=190, y=100)
+        button = tk.Button(window, text="Pesquisar", command=lambda: self.proxy.getAtleta(atleta))
+        button.place(x=190, y=200)
+        
     
     def adicionarPlayer(self):
         atleta.nome      = input("Digite o nome do atleta: ")
