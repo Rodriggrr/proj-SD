@@ -65,6 +65,8 @@ int main(){
             // Recebe a mensagem e a parseia para um objeto Message e a imprime.
             message = getRequest(socket.recv());
 
+            std::cout << message.DebugString();
+
             // Invoca o método correto e envia a mensagem de resposta, ou de erro, para o cliente.
             Message sendMsg = Despachante::invoke(message);
             socket.sendTo(*socket.getAddress(), sendMsg.SerializeAsString());

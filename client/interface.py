@@ -55,8 +55,14 @@ class Interface:
 
         nome = tk.Entry(window)
         nome.place(x=190, y=100)
-        atleta.nome = nome.get()
-        button = tk.Button(window, text="Pesquisar", command=lambda: self.proxy.getAtleta(atleta))
+        
+        atleta = Classes_pb2.Atleta()
+
+        def changeName(nome, atleta):
+            atleta.nome = nome
+            return atleta
+
+        button = tk.Button(window, text="Pesquisar", command=lambda: self.proxy.getAtleta(changeName(nome.get(), atleta)))
         button.place(x=190, y=200)
     
     def adicionarPlayer(self):
