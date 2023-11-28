@@ -6,11 +6,8 @@ from interface import *
 class PlayerClient:
 
     def menu(self):
-        Interface.Janela(self)
+        Interface.Janela()
         
-#Instancia um objeto da classe Atleta
-op = Interface()
-
 def main():
     
     while True:
