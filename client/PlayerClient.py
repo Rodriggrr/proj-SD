@@ -82,6 +82,11 @@ atleta = Classes_pb2.Atleta()
 time = Classes_pb2.Time()
 tecnico = time.Tecnico()
 
+def static loading():
+    proxy = Proxy()
+    janela = tk.Tk()
+
+
 def main():
     
     while True:
