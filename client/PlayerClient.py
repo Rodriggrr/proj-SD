@@ -3,8 +3,6 @@ from interface import *
 class PlayerClient:
 
     def menu(self):
-        Interface.Janela(self)
-    def menu(self):
         interface = Interface()
         interface.Janela()
         
