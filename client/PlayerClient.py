@@ -47,11 +47,7 @@ class PlayerClient:
         pesquisarTime = tk.Button(janela, text="Pesquisar", command=op.pesquisarTime)
         addTime = tk.Button(janela, text="Adicionar", command=op.adicionarTime)
 
-        # Place the buttons on top of the image
-        pesquisarPlayer.place(x=100, y=100)
-        addPlayer.place(x=200, y=100)
-        pesquisarTime.place(x=100, y=200)
-        addTime.place(x=200, y=200)
+       
 
         janela.mainloop()
         
