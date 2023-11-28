@@ -1,10 +1,9 @@
 from interface import *
 
-#Código que deve ser executado pelo cliente
-#onde cria uma instância da classe Proxy e chama os métodos
-
 class PlayerClient:
 
+    def menu(self):
+        Interface.Janela(self)
     def menu(self):
         interface = Interface()
         interface.Janela()
