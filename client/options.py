@@ -4,6 +4,8 @@ from PlayerProxy import *
 
 class Options:
     proxy = Proxy()
+
+    
     
     def pesquisarPlayer(self):
         atleta.nome      = input("Digite o nome do atleta: ")
