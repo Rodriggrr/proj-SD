@@ -1,11 +1,76 @@
-from interface import *
+import Classes_pb2
+from PlayerProxy import *
 
 class PlayerClient:
 
+    proxy = Proxy()
+
     def menu(self):
-        interface = Interface()
-        interface.Janela()
+        print(""" Selecione uma opção:
+        1 - Adicionar Time
+        2 - Pesquisar Time
+        3 - Adicionar Atleta
+        4 - Pesquisar Atleta
+        5 - Pesquisar Técnico """)
+        op = int(input("Digite a opção: "))
+    
+        if op == 1:
+            time.nome = input("Digite o nome do time: ")
+            tecnico.nome = input("Digite o nome do técnico: ")
+            tecnico.idade = int(input("Digite a idade do técnico: "))
+            tecnico.qtdTitulos = int(input("Digite a quantidade de títulos: "))
+            time.tecnico = tecnico.SerializeToString()
+            time.pontos = int(input("Digite a quantidade de pontos: "))
+            time.qtdJogos = int(input("Digite a quantidade de jogos: "))
+
+            self.proxy.addTime(time)
+
+        elif op == 2:
+            time.nome = input("Digite o nome do time: ")
+            self.proxy.getTime(time)
         
+        elif op == 3:
+            atleta.nome      = input("Digite o nome do atleta: ")
+            atleta.idade     = int(input("Digite a idade do atleta: "))
+            
+            posicao = input("""
+Digite a Posição:
+                             
+1 - Goleiro
+2 - Zagueiro
+3 - Lateral
+4 - Meio Campo
+5 - Atacante
+""")
+
+            if   posicao == "1":
+                atleta.posicao = Classes_pb2.Atleta.GOLEIRO
+            elif posicao == "2":
+                atleta.posicao = Classes_pb2.Atleta.ZAGUEIRO
+            elif posicao == "3":
+                atleta.posicao = Classes_pb2.Atleta.LATERAL
+            elif posicao == "4":
+                atleta.posicao = Classes_pb2.Atleta.MEIO_CAMPO
+            elif posicao == "5":
+                atleta.posicao = Classes_pb2.Atleta.ATACANTE
+                
+            atleta.numCamisa = int(input("Digite o número da camisa do atleta: "))
+            atleta.time = input("Digite o time do atleta: ")
+            self.proxy.addAtleta(atleta)
+        
+        elif op == 4:
+            atleta.nome = input("Digite o nome do atleta: ")
+            self.proxy.getAtleta(atleta) 
+        
+        elif op == 5:
+            time.nome = input("Digite o nome do time do tecnico: ")
+            self.proxy.getTecnico(time)
+
+
+atleta = Classes_pb2.Atleta()
+time = Classes_pb2.Time()
+tecnico = time.Tecnico()
+
 def main():
     
     while True:
