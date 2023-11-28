@@ -58,7 +58,6 @@ class Interface:
         atleta.nome = nome.get()
         button = tk.Button(window, text="Pesquisar", command=lambda: self.proxy.getAtleta(atleta))
         button.place(x=190, y=200)
-        
     
     def adicionarPlayer(self):
         atleta.nome      = input("Digite o nome do atleta: ")
