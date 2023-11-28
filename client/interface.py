@@ -6,8 +6,6 @@ from PIL import Image, ImageTk
 class Interface:
     proxy = Proxy()
 
-    def Janela(self):
-
     def centralizeWindow(self, janela):
         janela.update_idletasks()
         width = janela.winfo_width()
@@ -21,7 +19,7 @@ class Interface:
         janela = tk.Tk()
         janela.title("Campeonato")
         janela.geometry("690x514")
-        centralizeWindow(janela)
+        self.centralizeWindow(janela)
 
         imgPillow = Image.open('img.gif')
         img = ImageTk.PhotoImage(imgPillow)
