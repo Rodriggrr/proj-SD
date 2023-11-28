@@ -6,19 +6,20 @@ from PIL import Image, ImageTk
 class Interface:
     proxy = Proxy()
 
-    def Janela():
-        def centralizeWindow(janela):
+    def centralizeWindow(janela):
             janela.update_idletasks()
             width = janela.winfo_width()
             height = janela.winfo_height()
             x = (janela.winfo_screenwidth() // 2) - (width // 2)
             y = (janela.winfo_screenheight() // 2) - (height // 2)
             janela.geometry('{}x{}+{}+{}'.format(width, height, x, y))
-        
+
+    def Janela(self):
+      
         janela = tk.Tk()
         janela.title("Campeonato")
         janela.geometry("690x514")
-        centralizeWindow(janela)
+        self.centralizeWindow(janela)
 
         imgPillow = Image.open('img.gif')
         img = ImageTk.PhotoImage(imgPillow)
