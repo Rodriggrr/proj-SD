@@ -2,7 +2,7 @@ import tkinter as tk
 import Classes_pb2
 from PlayerProxy import *
 from PIL import Image, ImageTk
-from google.protobuf.json_format import MessageToDict
+from google.protobuf.json_format import MessageToJson
 
 class Interface:
     proxy = Proxy()
@@ -22,22 +22,24 @@ class Interface:
         janela.geometry("690x514")
         self.centralizeWindow(janela)
 
-        # imgPillow = Image.open('img.gif')
-        # img = ImageTk.PhotoImage(imgPillow)
-        # canvas = tk.Canvas(janela, width=img.width(), height=img.height())
-        # canvas.pack()
-        # canvas.create_image(0, 0, anchor=tk.NW, image=img)
+        imgPillow = Image.open('util/janela.gif')
+        img = ImageTk.PhotoImage(imgPillow)
+        canvas = tk.Canvas(janela, width=img.width(), height=img.height())
+        canvas.pack()
+        canvas.create_image(0, 0, anchor=tk.NW, image=img)
 
-        pesquisarPlayer = tk.Button(janela, text="Pesquisar", command=self.pesquisarPlayer)
-        addPlayer = tk.Button(janela, text="Adicionar", command=self.adicionarPlayer)
-        pesquisarTime = tk.Button(janela, text="Pesquisar", command=self.pesquisarTime)
-        addTime = tk.Button(janela, text="Adicionar", command=self.adicionarTime)
+        pesquisarPlayer = tk.Button(janela, text="Pesquisar Jogador", command=self.pesquisarPlayer)
+        addPlayer = tk.Button(janela, text="Adicionar Jogador", command=self.adicionarPlayer)
+        pesquisarTime = tk.Button(janela, text="Pesquisar Time", command=self.pesquisarTime)
+        addTime = tk.Button(janela, text="Adicionar Time", command=self.adicionarTime)
+        pesquisarTecnico = tk.Button(janela, text="Pesquisar Técnico", command=self.pesquisarTecnico)
 
         # Place the buttons on top of the image
         pesquisarPlayer.place(x=170, y=100)
         addPlayer.place(x=400, y=100)
         pesquisarTime.place(x=172, y=240)
         addTime.place(x=400, y=240)
+        pesquisarTecnico.place(x=170, y=380)
 
         janela.mainloop()
       
@@ -48,11 +50,11 @@ class Interface:
         window.geometry("690x514")
         self.centralizeWindow(window)
 
-        # self.imgPillow = Image.open('img.gif')
-        # self.img = ImageTk.PhotoImage(self.imgPillow)
-        # canvas = tk.Canvas(window, width=self.img.width(), height=self.img.height())
-        # canvas.pack()
-        # canvas.create_image(0, 0, anchor=tk.NW, image=self.img)
+        self.imgPillow = Image.open('util/pesqPlayer.gif')
+        self.img = ImageTk.PhotoImage(self.imgPillow)
+        canvas = tk.Canvas(window, width=self.img.width(), height=self.img.height())
+        canvas.pack()
+        canvas.create_image(0, 0, anchor=tk.NW, image=self.img)
    
         nome = tk.Entry(window)
         nome.place(x=190, y=100)
@@ -78,11 +80,11 @@ class Interface:
         window.geometry("690x514")
         self.centralizeWindow(window)
 
-        # self.imgPillow = Image.open('img.gif')
-        # self.img = ImageTk.PhotoImage(self.imgPillow)
-        # canvas = tk.Canvas(window, width=self.img.width(), height=self.img.height())
-        # canvas.pack()
-        # canvas.create_image(0, 0, anchor=tk.NW, image=self.img)
+        self.imgPillow = Image.open('util/addPlayer.gif')
+        self.img = ImageTk.PhotoImage(self.imgPillow)
+        canvas = tk.Canvas(window, width=self.img.width(), height=self.img.height())
+        canvas.pack()
+        canvas.create_image(0, 0, anchor=tk.NW, image=self.img)
 
         labelNome = tk.Label(window, text="Nome:")
         labelNome.place(x=100, y=100)
@@ -129,7 +131,8 @@ class Interface:
                 atleta.time = time
                 return atleta
             resultado = self.proxy.addAtleta(changeAtleta(nome.get(), idade.get(), posicao.get(), numCamisa.get(), time.get(), atleta))
-            label.config(text=resultado)
+            if resultado is True:
+                label.configure(text="Adicionado com sucesso!")
         
         button = tk.Button(window, text="Adicionar", command=lambda: doOp(self))
         button.place(x=230, y=250)
@@ -143,28 +146,26 @@ class Interface:
             window.geometry("690x514")
             self.centralizeWindow(window)
     
-            # self.imgPillow = Image.open('img.gif')
-            # self.img = ImageTk.PhotoImage(self.imgPillow)
-            # canvas = tk.Canvas(window, width=self.img.width(), height=self.img.height())
-            # canvas.pack()
-            # canvas.create_image(0, 0, anchor=tk.NW, image=self.img)
+            self.imgPillow = Image.open('util/pesqTime.gif')
+            self.img = ImageTk.PhotoImage(self.imgPillow)
+            canvas = tk.Canvas(window, width=self.img.width(), height=self.img.height())
+            canvas.pack()
+            canvas.create_image(0, 0, anchor=tk.NW, image=self.img)
     
             nome = tk.Entry(window)
             nome.place(x=190, y=100)
             
             time = Classes_pb2.Time()
-            
-            texto = tk.Text(window, height=5, width=5)
-            texto.pack()
     
             def doOp(self):
                 def changeName(nome, time):
                     time.nome = nome
                     return time
                 resultado = self.proxy.getTime(changeName(nome.get(), time))
-                print(resultado)
-                resu = str(resultado)
-                texto.insert(tk.END, resu)
+                print (str(resultado))
+
+                label.config(text=resultado)
+                
 
             button = tk.Button(window, text="Pesquisar", command=lambda: doOp(self))
             button.place(x=230, y=150)
@@ -172,13 +173,97 @@ class Interface:
             label.place(x=210, y=200)
 
     def adicionarTime(self):
-        time.nome = input("Digite o nome do time: ")
-        time.tecnico = input("Digite o nome do técnico: ")
-        time.pontos = int(input("Digite a pontuação do time: "))
-        time.qtdJogos = int(input("Digite a quantidade de jogos do time: "))
+        
+        window = tk.Toplevel()
+        window.title("Adicionar Time")
+        window.geometry("690x514")
+        self.centralizeWindow(window)
 
-        self.proxy.addTime(time)
+        self.imgPillow = Image.open('util/addTime.gif')
+        self.img = ImageTk.PhotoImage(self.imgPillow)
+        canvas = tk.Canvas(window, width=self.img.width(), height=self.img.height())
+        canvas.pack()
+        canvas.create_image(0, 0, anchor=tk.NW, image=self.img)
+
+        labelNome = tk.Label(window, text="Nome do time:")
+        labelNome.place(x=100, y=100)
+        nome = tk.Entry(window)
+        nome.place(x=190, y=100)
+        labelNomeTec = tk.Label(window, text="Nome do técnico:")
+        labelNomeTec.place(x=100, y=130)
+        nomeTec = tk.Entry(window)
+        nomeTec.place(x=190, y=130)
+        labelIdadeTec = tk.Label(window, text="Idade do técnico:")
+        labelIdadeTec.place(x=100, y=160)
+        idadeTec = tk.Entry(window)
+        idadeTec.place(x=190, y=160)
+        labelQtdTitulos = tk.Label(window, text="Quantidade de títulos:")
+        labelQtdTitulos.place(x=100, y=190)
+        qtdTitulos = tk.Entry(window)
+        qtdTitulos.place(x=190, y=190)
+        labelPontos = tk.Label(window, text="Pontos do time:")
+        labelPontos.place(x=100, y=220)
+        pontos = tk.Entry(window)
+        pontos.place(x=190, y=220)
+        labelQtdJogos = tk.Label(window, text="Quantidade de jogos:")
+        labelQtdJogos.place(x=100, y=250)
+        qtdJogos = tk.Entry(window)
+        qtdJogos.place(x=190, y=250)
+
+        def doOp(self):
+            time = Classes_pb2.Time()
+            tecnico = time.Tecnico()
+            def changeTime(nome, nomeTec, idadeTec, qtdTitulos, pontos, qtdJogos, time, tecnico):
+                time.nome = nome
+                tecnico.nome = nomeTec
+                tecnico.idade = int(idadeTec)
+                tecnico.qtdTitulos = int(qtdTitulos)
+                time.tecnico = tecnico.SerializeToString()
+                time.pontos = int(pontos)
+                time.qtdJogos = int(qtdJogos)
+                return time
+            resultado = self.proxy.addTime(changeTime(nome.get(), nomeTec.get(), idadeTec.get(), qtdTitulos.get(), pontos.get(), qtdJogos.get(), time, tecnico))
+            label.config(text=resultado)
+
+        button = tk.Button(window, text="Adicionar", command=lambda: doOp(self))
+        button.place(x=230, y=300)
+
+        label = tk.Label(window, text="")
+        label.place(x=210, y=350)
     
+    def pesquisarTecnico(self):
+            
+            window = tk.Toplevel()
+            window.title("Pesquisar Técnico")
+            window.geometry("690x514")
+            self.centralizeWindow(window)
+    
+            self.imgPillow = Image.open('util/pesqTec.gif')
+            self.img = ImageTk.PhotoImage(self.imgPillow)
+            canvas = tk.Canvas(window, width=self.img.width(), height=self.img.height())
+            canvas.pack()
+            canvas.create_image(0, 0, anchor=tk.NW, image=self.img)
+    
+
+            labelNome = tk.Label(window, text="Nome do time:")
+            labelNome.place(x=100, y=100)
+            nome = tk.Entry(window)
+            nome.place(x=190, y=100)
+            
+            time = Classes_pb2.Time()
+    
+            def doOp(self):
+                def changeName(nome, time):
+                    time.nome = nome
+                    return time
+                resultado = self.proxy.getTecnico(changeName(nome.get(), time))
+                label.config(text=resultado)
+
+            button = tk.Button(window, text="Pesquisar", command=lambda: doOp(self))
+            button.place(x=230, y=150)
+            label = tk.Label(window, text="")
+            label.place(x=210, y=200)
 
 atleta = Classes_pb2.Atleta()
 time = Classes_pb2.Time()
+tecnico = time.Tecnico()

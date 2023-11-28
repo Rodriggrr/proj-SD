@@ -46,6 +46,7 @@ class Proxy:
         time = Classes_pb2.Time()
         time.ParseFromString(bytes)
         print(colored("\n{\n\n" + str(time) + "\n}", "yellow"))
+        return time
 
     def addTime(self, time):
         bytes = self.doOperation(time, "addTime", "Campeonato")
@@ -58,6 +59,7 @@ class Proxy:
         tecnico = time.Tecnico()
         tecnico.ParseFromString(bytes)
         print(colored("\n{\n\n" + str(tecnico) + "\n}", "yellow"))
+        return tecnico
 
     #doOperation tem a função de realizar a operação em si
     def doOperation(self, request, method, objRef = None):

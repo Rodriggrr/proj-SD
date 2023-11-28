@@ -67,6 +67,10 @@ Digite a Posição:
             time.nome = input("Digite o nome do time do tecnico: ")
             self.proxy.getTecnico(time)
 
+    def inter(self):
+        interface = Interface()
+        interface.Janela()
+
 atleta = Classes_pb2.Atleta()
 time = Classes_pb2.Time()
 tecnico = time.Tecnico()
@@ -77,7 +81,7 @@ def main():
         try:
             #É criado um objeto da classe PlayerClient e chama o método menu()
             client = PlayerClient()
-            Interface.Janela()
+            client.inter()
             # client.menu()
         except ServerTimedOutException as e:
             #Caso o servidor não responda dentro do tempo limite, o programa é encerrado por timeout
