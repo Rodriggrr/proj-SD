@@ -32,6 +32,7 @@ class Proxy:
         #Recebe a resposta doOperation e printa no objeto atleta
         atleta.ParseFromString(bytes)
         print(colored("\n{\n\n" + str(atleta) + "\n}", "yellow"))
+        return atleta
 
     #Função para adicionar um atleta
     def addAtleta(self, atleta):
@@ -91,7 +92,3 @@ class Proxy:
         #Retorna os argumentos
         bytes = response.args
         return bytes
-        
-
-
-

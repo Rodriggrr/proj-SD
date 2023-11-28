@@ -2,6 +2,7 @@ import tkinter as tk
 import Classes_pb2
 from PlayerProxy import *
 from PIL import Image, ImageTk
+from google.protobuf.json_format import MessageToDict
 
 class Interface:
     proxy = Proxy()
@@ -21,11 +22,11 @@ class Interface:
         janela.geometry("690x514")
         self.centralizeWindow(janela)
 
-        imgPillow = Image.open('img.gif')
-        img = ImageTk.PhotoImage(imgPillow)
-        canvas = tk.Canvas(janela, width=img.width(), height=img.height())
-        canvas.pack()
-        canvas.create_image(0, 0, anchor=tk.NW, image=img)
+        # imgPillow = Image.open('img.gif')
+        # img = ImageTk.PhotoImage(imgPillow)
+        # canvas = tk.Canvas(janela, width=img.width(), height=img.height())
+        # canvas.pack()
+        # canvas.create_image(0, 0, anchor=tk.NW, image=img)
 
         pesquisarPlayer = tk.Button(janela, text="Pesquisar", command=self.pesquisarPlayer)
         addPlayer = tk.Button(janela, text="Adicionar", command=self.adicionarPlayer)
@@ -47,56 +48,136 @@ class Interface:
         window.geometry("690x514")
         self.centralizeWindow(window)
 
-        imgPillow = Image.open('img.gif')
-        img = ImageTk.PhotoImage(imgPillow)
-        canvas = tk.Canvas(window, width=img.width(), height=img.height())
-        canvas.pack()
-        canvas.create_image(0, 0, anchor=tk.NW, image=img)
-
+        # self.imgPillow = Image.open('img.gif')
+        # self.img = ImageTk.PhotoImage(self.imgPillow)
+        # canvas = tk.Canvas(window, width=self.img.width(), height=self.img.height())
+        # canvas.pack()
+        # canvas.create_image(0, 0, anchor=tk.NW, image=self.img)
+   
         nome = tk.Entry(window)
         nome.place(x=190, y=100)
         
         atleta = Classes_pb2.Atleta()
 
-        def changeName(nome, atleta):
-            atleta.nome = nome
-            return atleta
+        def doOp(self):
+            def changeName(nome, atleta):
+                atleta.nome = nome
+                return atleta
+            resultado = self.proxy.getAtleta(changeName(nome.get(), atleta))
+            label.config(text=resultado)
 
-        button = tk.Button(window, text="Pesquisar", command=lambda: self.proxy.getAtleta(changeName(nome.get(), atleta)))
-        button.place(x=190, y=200)
-    
-    def adicionarPlayer(self):
-        atleta.nome      = input("Digite o nome do atleta: ")
-        atleta.idade     = int(input("Digite a idade do atleta: "))
+        button = tk.Button(window, text="Pesquisar", command=lambda: doOp(self))
+        button.place(x=230, y=150)
+        label = tk.Label(window, text="")
+        label.place(x=210, y=200)
             
-        posicao = input("""
-Digite a Posição:
-                            
-1 - Goleiro
+    def adicionarPlayer(self):
+        
+        window = tk.Toplevel()
+        window.title("Adicionar Jogador")
+        window.geometry("690x514")
+        self.centralizeWindow(window)
+
+        # self.imgPillow = Image.open('img.gif')
+        # self.img = ImageTk.PhotoImage(self.imgPillow)
+        # canvas = tk.Canvas(window, width=self.img.width(), height=self.img.height())
+        # canvas.pack()
+        # canvas.create_image(0, 0, anchor=tk.NW, image=self.img)
+
+        labelNome = tk.Label(window, text="Nome:")
+        labelNome.place(x=100, y=100)
+        nome = tk.Entry(window)
+        nome.place(x=190, y=100)
+        labelNome = tk.Label(window, text="Idade:")
+        labelNome.place(x=100, y=130)
+        idade = tk.Entry(window)
+        idade.place(x=190, y=130)
+        labelNome = tk.Label(window, text="""Posição: 1 - Goleiro
 2 - Zagueiro
 3 - Lateral
 4 - Meio Campo
-5 - Atacante
-""")
-        #chama o enum de acordo com a opção escolhida
-        if   posicao == "1":
-            atleta.posicao = Classes_pb2.Atleta.GOLEIRO
-        elif posicao == "2":
-            atleta.posicao = Classes_pb2.Atleta.ZAGUEIRO
-        elif posicao == "3":
-            atleta.posicao = Classes_pb2.Atleta.LATERAL
-        elif posicao == "4":
-            atleta.posicao = Classes_pb2.Atleta.MEIO_CAMPO
-        elif posicao == "5":
-            atleta.posicao = Classes_pb2.Atleta.ATACANTE
-            
-        atleta.numCamisa = int(input("Digite o número da camisa do atleta: "))
-        atleta.time = input("Digite o time do atleta: ")
-        self.proxy.addAtleta(atleta)
+5 - Atacante""")
+        labelNome.place(x=100, y=160)
+        posicao = tk.Entry(window)
+        posicao.place(x=190, y=160)
+        labelNumCamisa = tk.Label(window, text="Número da Camisa:")
+        labelNumCamisa.place(x=100, y=190)
+        numCamisa = tk.Entry(window)
+        numCamisa.place(x=190, y=190)
+        labelTime = tk.Label(window, text="Time:")
+        labelTime.place(x=100, y=220)
+        time = tk.Entry(window)
+        time.place(x=190, y=220)
+
+        atleta = Classes_pb2.Atleta()
+
+        def doOp(self):
+            def changeAtleta(nome, idade, posicao, numCamisa, time, atleta):
+                atleta.nome = nome
+                atleta.idade = int(idade)
+                if posicao == 1:
+                    atleta.posicao = Classes_pb2.Atleta.GOLEIRO
+                elif posicao == 2:
+                    atleta.posicao = Classes_pb2.Atleta.ZAGUEIRO
+                elif posicao == 3:
+                    atleta.posicao = Classes_pb2.Atleta.LATERAL
+                elif posicao == 4:
+                    atleta.posicao = Classes_pb2.Atleta.MEIOCAMPO
+                elif posicao == 5:
+                    atleta.posicao = Classes_pb2.Atleta.ATACANTE
+                atleta.numCamisa = int(numCamisa)
+                atleta.time = time
+                return atleta
+            resultado = self.proxy.addAtleta(changeAtleta(nome.get(), idade.get(), posicao.get(), numCamisa.get(), time.get(), atleta))
+            label.config(text=resultado)
+        
+        button = tk.Button(window, text="Adicionar", command=lambda: doOp(self))
+        button.place(x=230, y=250)
+        label = tk.Label(window, text="")
+        label.place(x=210, y=300)
 
     def pesquisarTime(self):
-        time.nome = input("Digite o nome do time: ")
-        self.proxy.getTime(time)
+            
+            window = tk.Toplevel()
+            window.title("Pesquisar Time")
+            window.geometry("690x514")
+            self.centralizeWindow(window)
+    
+            # self.imgPillow = Image.open('img.gif')
+            # self.img = ImageTk.PhotoImage(self.imgPillow)
+            # canvas = tk.Canvas(window, width=self.img.width(), height=self.img.height())
+            # canvas.pack()
+            # canvas.create_image(0, 0, anchor=tk.NW, image=self.img)
+    
+            nome = tk.Entry(window)
+            nome.place(x=190, y=100)
+            
+            time = Classes_pb2.Time()
+            texto = tk.Text(window, height=5, width=5)
+            texto.pack()
+    
+            def doOp(self):
+                def changeName(nome, time):
+                    time.nome = nome
+                    return time
+                resultado = str(self.proxy.getTime(changeName(nome.get(), time)))
+                label.config(text=resultado)
+
+            def doOp():
+                def changeName(nome, time):
+                    time.nome = nome
+                    return time
+                resultado = self.proxy.getTime(changeName(nome.get(), time))
+                dados_dict = MessageToDict(resultado)
+                texto.delete(1.0, tk.END)  # Limpa o texto existente
+
+                for chave, valor in dados_dict.items():
+                    texto.insert(tk.END, f"{chave}: {valor}\n\n")
+        
+            button = tk.Button(window, text="Pesquisar", command=lambda: doOp(self))
+            button.place(x=230, y=150)
+            label = tk.Label(window, text="")
+            label.place(x=210, y=200)
 
     def adicionarTime(self):
         time.nome = input("Digite o nome do time: ")
@@ -109,17 +190,3 @@ Digite a Posição:
 
 atleta = Classes_pb2.Atleta()
 time = Classes_pb2.Time()
-
-
-
-
-
-
-
-
-#         print("""
-# 1 - Listar Jogadores
-# 2 - Adicionar Jogador
-# 3 - Listar Times
-# 4 - Adicionar Time
-# """)
