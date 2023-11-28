@@ -82,9 +82,26 @@ atleta = Classes_pb2.Atleta()
 time = Classes_pb2.Time()
 tecnico = time.Tecnico()
 
-def static loading():
-    proxy = Proxy()
-    janela = tk.Tk()
+@staticmethod
+def loading():
+
+    while True:
+    
+        janela = tk.Tk()
+        janela.geometry("690x514")
+        Interface.centralizeWindow(janela)
+
+        imgPillow = Image.open('util/bg.gif')
+        img = ImageTk.PhotoImage(imgPillow)
+        canvas = tk.Canvas(janela, width=img.width(), height=img.height())
+        canvas.pack()
+        canvas.create_image(0, 0, anchor=tk.NW, image=img)
+
+        sys.sleep(5)
+        janela.destroy()
+        main()
+        break
+
 
 
 def main():
@@ -108,4 +125,5 @@ def main():
         
         print("Pressione ENTER para continuar...")
         input()
-main()
+
+loading()
