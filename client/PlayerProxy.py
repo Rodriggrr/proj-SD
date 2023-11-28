@@ -8,13 +8,13 @@ requestID = 0
 #Proxy tem a função de fazer a comunicação entre o cliente e o servidor
 
 #Classe de exceção personalizada para argumentos inválidos
-class ArgsErrorException(Exception):
+class ArgsErrorException(SystemExit):
     def __init__(self, message="Invalid arguments"):
         self.message = message
         super().__init__(self.message)
 
 #Classe de exceção personalizada para requisição duplicada
-class DuplicateRequestException(Exception):
+class DuplicateRequestException(SystemExit):
     def __init__(self, message="Duplicate request"):
         self.message = message
         super().__init__(self.message)
