@@ -11,38 +11,37 @@ struct Despachante {
      * @note Para adicionar uma nova função, basta adicionar uma nova entrada no mapaDeFuncoes.
      */
     void inicializarMapaDeFuncoes() {
-    // Associe cada par (objref, methodid) a uma função do esqueleto
-    mapaDeFuncoes[{"Campeonato", "getAtleta"}] = [](const std::string& args) {
-        Gerenciador::Atleta atleta;
-        atleta.ParseFromString(args);
-        std::cout << atleta.DebugString();
-        return Campeonato::Esqueleto::getAtleta(atleta.nome()).SerializeAsString();
-    };
+        mapaDeFuncoes[{"Campeonato", "getAtleta"}] = [](const std::string& args) {
+            Gerenciador::Atleta atleta;
+            atleta.ParseFromString(args);
+            std::cout << atleta.DebugString();
+            return Campeonato::Esqueleto::getAtleta(atleta.nome()).SerializeAsString();
+        };
 
-    mapaDeFuncoes[{"Campeonato", "addAtleta"}] = [](const std::string& args) {
-        Gerenciador::Atleta atleta;
-        atleta.ParseFromString(args);
-        return Campeonato::Esqueleto::addAtleta(atleta).SerializeAsString();
-    };
+        mapaDeFuncoes[{"Campeonato", "addAtleta"}] = [](const std::string& args) {
+            Gerenciador::Atleta atleta;
+            atleta.ParseFromString(args);
+            return Campeonato::Esqueleto::addAtleta(atleta).SerializeAsString();
+        };
 
-    mapaDeFuncoes[{"Campeonato", "getTime"}] = [](const std::string& args) {
-        Gerenciador::Time time;
-        time.ParseFromString(args);
-        return Campeonato::Esqueleto::getTime(time.nome()).SerializeAsString();
-    };
+        mapaDeFuncoes[{"Campeonato", "getTime"}] = [](const std::string& args) {
+            Gerenciador::Time time;
+            time.ParseFromString(args);
+            return Campeonato::Esqueleto::getTime(time.nome()).SerializeAsString();
+        };
 
-    mapaDeFuncoes[{"Campeonato", "addTime"}] = [](const std::string& args) {
-        Gerenciador::Time time;
-        time.ParseFromString(args);
-        return Campeonato::Esqueleto::addTime(time).SerializeAsString();
-    };
+        mapaDeFuncoes[{"Campeonato", "addTime"}] = [](const std::string& args) {
+            Gerenciador::Time time;
+            time.ParseFromString(args);
+            return Campeonato::Esqueleto::addTime(time).SerializeAsString();
+        };
 
-    mapaDeFuncoes[{"Campeonato", "getTecnico"}] = [](const std::string& args) {
-        Gerenciador::Time time;
-        time.ParseFromString(args);
-        return Campeonato::Esqueleto::getTecnico(time.nome()).SerializeAsString();
-    };
-}
+        mapaDeFuncoes[{"Campeonato", "getTecnico"}] = [](const std::string& args) {
+            Gerenciador::Time time;
+            time.ParseFromString(args);
+            return Campeonato::Esqueleto::getTecnico(time.nome()).SerializeAsString();
+        };
+    }
 
     // Mapeia pares (objref, methodid) para funções do esqueleto
     std::map<std::pair<std::string, std::string>, FuncaoEsqueleto> mapaDeFuncoes;

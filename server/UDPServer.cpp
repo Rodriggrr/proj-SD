@@ -55,6 +55,7 @@ int main(){
                         << "2 - Desligar o servidor\n";
                 int choice;
                 std::cin >> choice;
+                std::cin.ignore();
                 if(choice == 1) {
                     duped = (duped) ? false : true;
                 }
@@ -64,8 +65,7 @@ int main(){
 
         t.detach();
 
-        try{
-            
+        try{ 
             // Recebe a mensagem e a parseia para um objeto Message e a imprime.
             message = getRequest(socket.recv());
 
