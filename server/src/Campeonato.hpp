@@ -26,11 +26,6 @@ public:
         throw std::runtime_error("Atleta não encontrado");
     }
 
-    // Adiciona um time à lista de times do campeonato
-    void addTime(Gerenciador::Time time){
-        times.push_back(time);
-    }
-
     // Adiciona um atleta à lista de atletas do time passado por parâmetro
     void addAtleta(std::string time, Gerenciador::Atleta atleta){
         for(int i = 0; i < times.size(); i++){
@@ -40,6 +35,29 @@ public:
             }
         }
         throw std::runtime_error("Time não encontrado");
+    }
+    // Adiciona um time à lista de times do campeonato
+    void addTime(Gerenciador::Time time){
+        times.push_back(time);
+    }
+
+    Gerenciador::Time getTime(std::string nome) {
+        for(auto a : times) {
+            if(a.nome() == nome)
+                return a;
+        }
+        throw std::runtime_error("Time não encontrado");
+    }
+
+    Gerenciador::Time::Tecnico getTecnico(std::string nomeTime) {
+        for(int i = 0; i < times.size(); i++){
+            if (times[i].nome() == nomeTime){
+                Gerenciador::Time::Tecnico tecnico;
+                tecnico.ParseFromString(times[i].tecnico());
+                return tecnico;
+            }
+        }
+        throw std::runtime_error("Time não encontrado"); 
     }
 
     // Retorna todos os atletas do campeonato
@@ -52,6 +70,8 @@ public:
         }
         return atletas;
     }
+
+    
 
 };
 

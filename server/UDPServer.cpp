@@ -8,12 +8,15 @@ Campeonato::Campeonato campeonato;
 #include "src/fn.hpp"
 
 #include <iostream>
+#include <thread>
 
 using namespace Gerenciador;
 
 Message getRequest(std::pair<int, char*> request);
 
 int main(){
+    bool duped = false;
+
     DatagramSocket socket(49110);
 
     // Inicialização do campeonato, com um time e um atleta. (Para testes)
@@ -21,6 +24,13 @@ int main(){
     time.set_nome("Sao Paulo");
     time.set_pontos(6);
     time.set_qtdjogos(2);
+    Time::Tecnico tecnico;
+    tecnico.set_nome("Joaquim");
+    tecnico.set_idade(42);
+    tecnico.set_qtdtitulos(11);
+    time.set_tecnico(tecnico.SerializeAsString().c_str());
+
+
     campeonato.addTime(time);
     Atleta atleta;
     atleta.set_nome("Hernanes");
@@ -30,19 +40,43 @@ int main(){
 
     campeonato.addAtleta(atleta.time(), atleta);
 
+
+
     // Loop básico de recebimento de mensagens
     while(true){
         Message message;
+        std::thread t([&]() {
+            while(true) {
+                std::cout << "Debug:\n"
+                        << "1 - Começar a  enviar pacotes duplicados\n"
+                        << "2 - Parar de enviar pacotes duplicados\n"
+                        << "3 - Desligar o servidor\n";
+                int choice;
+                std::cin >> choice;
+                if(choice == 1) {
+                    duped = true;
+                }
+                else if(choice == 2) {
+                    duped = false;
+                }
+                else exit(0);
+            }
+        });
+
+        t.detach();
+
         try{
             
             // Recebe a mensagem e a parseia para um objeto Message e a imprime.
             message = getRequest(socket.recv());
-            std::cout << "Received message: " << message.DebugString() << std::endl;
 
             // Invoca o método correto e envia a mensagem de resposta, ou de erro, para o cliente.
-            Message sendMsg = Despachante::invoke(message);
-            std::cout << "Sending message: " << sendMsg.DebugString() << std::endl;
-            socket.sendTo(*socket.getAddress(), sendMsg.SerializeAsString());
+
+            while(duped) {
+                usleep(500);
+                Message sendMsg = Despachante::invoke(message);
+                socket.sendTo(*socket.getAddress(), sendMsg.SerializeAsString());
+            }
 
         // Caso ocorra algum erro, envia uma mensagem de erro para o cliente.
         } catch(std::runtime_error& e){

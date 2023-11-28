@@ -74,6 +74,7 @@ def main():
             #Caso o servidor responda com erro, o programa é encerrado e mostra a mensagem de erro
             print(colored("Erro: " + str(e), "red"))
         except DuplicateRequestException as e:
-            None #Descarta a mensagem duplicada
+            #Descarta a mensagem duplicada
+            print(e) 
         
 main()
