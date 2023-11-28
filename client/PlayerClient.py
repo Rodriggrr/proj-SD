@@ -2,7 +2,7 @@ from interface import *
 
 class PlayerClient:
 
-    def menu():
+    def menu(self):
         interface = Interface()
         interface.Janela()
         

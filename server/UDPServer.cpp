@@ -24,13 +24,11 @@ int main(){
     time.set_nome("Sao Paulo");
     time.set_pontos(6);
     time.set_qtdjogos(2);
-    Time::Tecnico tecnico;
-    tecnico.set_nome("Dorival");
-    tecnico.set_idade(61);
-    tecnico.set_qtdtitulos(6);
-    time.set_tecnico(tecnico.SerializeAsString().c_str());
-
-
+    // Time::Tecnico tecnico;
+    // tecnico.set_nome("Dorival");
+    // tecnico.set_idade(61);
+    // tecnico.set_qtdtitulos(6);
+    // time.set_tecnico(tecnico.SerializeAsString().c_str());
     campeonato.addTime(time);
     Atleta atleta;
     atleta.set_nome("Hernanes");
@@ -70,7 +68,15 @@ int main(){
             // Recebe a mensagem e a parseia para um objeto Message e a imprime.
             message = getRequest(socket.recv());
 
+            std::cout << message.DebugString();
+
             // Invoca o método correto e envia a mensagem de resposta, ou de erro, para o cliente.
+
+            Message sendMsg = Despachante::invoke(message);
+            socket.sendTo(*socket.getAddress(), sendMsg.SerializeAsString());
+
+            std::cout << sendMsg.DebugString();
+
 
             while(duped) {
                 usleep(500);

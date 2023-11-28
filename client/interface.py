@@ -6,13 +6,13 @@ from PIL import Image, ImageTk
 class Interface:
     proxy = Proxy()
 
-    def centralizeWindow(janela):
-            janela.update_idletasks()
-            width = janela.winfo_width()
-            height = janela.winfo_height()
-            x = (janela.winfo_screenwidth() // 2) - (width // 2)
-            y = (janela.winfo_screenheight() // 2) - (height // 2)
-            janela.geometry('{}x{}+{}+{}'.format(width, height, x, y))
+    def centralizeWindow(self, janela):
+        janela.update_idletasks()
+        width = janela.winfo_width()
+        height = janela.winfo_height()
+        x = (janela.winfo_screenwidth() // 2) - (width // 2)
+        y = (janela.winfo_screenheight() // 2) - (height // 2)
+        janela.geometry('{}x{}+{}+{}'.format(width, height, x, y))
 
     def Janela(self):
       
