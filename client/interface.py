@@ -55,6 +55,7 @@ class Interface:
 
         nome = tk.Entry(window)
         nome.place(x=190, y=100)
+        atleta.nome = nome.get()
         button = tk.Button(window, text="Pesquisar", command=lambda: self.proxy.getAtleta(atleta))
         button.place(x=190, y=200)
         
