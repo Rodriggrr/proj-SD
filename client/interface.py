@@ -6,6 +6,8 @@ from PIL import Image, ImageTk
 class Interface:
     proxy = Proxy()
 
+    def Janela(self):
+
     def centralizeWindow(self, janela):
         janela.update_idletasks()
         width = janela.winfo_width()
@@ -19,7 +21,7 @@ class Interface:
         janela = tk.Tk()
         janela.title("Campeonato")
         janela.geometry("690x514")
-        self.centralizeWindow(janela)
+        centralizeWindow(janela)
 
         imgPillow = Image.open('img.gif')
         img = ImageTk.PhotoImage(imgPillow)
@@ -42,8 +44,32 @@ class Interface:
         janela.mainloop()
       
     def pesquisarPlayer(self):
-        atleta.nome      = input("Digite o nome do atleta: ")
-        self.proxy.getAtleta(atleta)
+
+        def centralizeWindow(window):
+            window.update_idletasks()
+            width = window.winfo_width()
+            height = window.winfo_height()
+            x = (window.winfo_screenwidth() // 2) - (width // 2)
+            y = (window.winfo_screenheight() // 2) - (height // 2)
+            window.geometry('{}x{}+{}+{}'.format(width, height, x, y))
+        
+        window = tk.Toplevel()
+        window.title("Pesquisar Jogador")
+        window.geometry("690x514")
+        centralizeWindow(window)
+
+        imgPillow = Image.open('img.gif')
+        img = ImageTk.PhotoImage(imgPillow)
+        canvas = tk.Canvas(window, width=img.width(), height=img.height())
+        canvas.pack()
+        canvas.create_image(0, 0, anchor=tk.NW, image=img)
+
+        nome = tk.Entry(window)
+        nome.place(x=370, y=100)
+        atleta.nome = nome.get()
+        
+        pesquisar = tk.Button(window, text="Pesquisar", command=self.proxy.getAtleta(atleta))
+        pesquisar.pack()
     
     def adicionarPlayer(self):
         atleta.nome      = input("Digite o nome do atleta: ")
