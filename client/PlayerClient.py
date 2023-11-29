@@ -137,7 +137,6 @@ def loading():
 
         break
         
-
 def main():
     
     while True:
@@ -160,5 +159,4 @@ def main():
         print("Pressione ENTER para continuar...")
         input()
 
-loading()
 main()
