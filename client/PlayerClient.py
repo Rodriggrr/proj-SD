@@ -4,6 +4,7 @@ import pygame
 import Classes_pb2
 from PlayerProxy import *
 from interface import *
+import imageio
 
 
 class PlayerClient:
@@ -117,24 +118,19 @@ def loading():
         janela.geometry("690x514")
         centralizeWindow(janela)
 
-        imgPillow = Image.open('util/bgVideo.gif')
-        img = ImageTk.PhotoImage(imgPillow)
-        frames = [ImageTk.PhotoImage(img.copy().convert('RGBA')) for _ in range(img.n_frames)]
+        gif_path = 'util/bgVideo.gif'
+        reader = imageio.get_reader(gif_path)
+        frames = [ImageTk.PhotoImage(Image.fromarray(frame)) for frame in reader]
+        default_width = 300  # Defina um valor padrão para largura caso a chave 'width' não esteja presente
+        default_height = 200    
+        canvas = tk.Canvas(janela, width=reader.get_meta_data()['width'], height=reader.get_meta_data()['height'])
+        canvas.pack()
 
-        canvas = tk.Canvas(janela, width=img.width(), height=img.height())
-        canvas.pack(fill="both", expand=True)
+        def update_gif(frame_num=0):
+            frame = frames[frame_num]
+            canvas.create_image(0, 0, anchor=tk.NW, image=frame)
+            janela.after(reader.get_meta_data()['duration'], update_gif, (frame_num + 1) % len(frames))
 
-        def update_gif():
-            global current_frame
-            canvas.itemconfig(bg_img_id, image=frames[current_frame])
-            janela.after(frame_duration, update_gif)
-            current_frame = (current_frame + 1) % num_frames
-
-        current_frame = 0
-        num_frames = len(frames)
-        frame_duration = img.info['duration']
-
-        bg_img_id = canvas.create_image(0, 0, anchor=tk.NW, image=frames[current_frame])
         update_gif()
 
         janela.mainloop()
