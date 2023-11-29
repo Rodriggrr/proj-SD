@@ -1,5 +1,5 @@
+import time as tm
 import Classes_pb2
-import sys
 from PlayerProxy import *
 from interface import *
 
@@ -82,27 +82,45 @@ atleta = Classes_pb2.Atleta()
 time = Classes_pb2.Time()
 tecnico = time.Tecnico()
 
-@staticmethod
 def loading():
 
     while True:
-    
+        def centralizeWindow(janela):
+            janela.update_idletasks()
+            width = janela.winfo_width()
+            height = janela.winfo_height()
+            x = (janela.winfo_screenwidth() // 2) - (width // 2)
+            y = (janela.winfo_screenheight() // 2) - (height // 2)
+            janela.geometry('{}x{}+{}+{}'.format(width, height, x, y))
+
         janela = tk.Tk()
         janela.geometry("690x514")
-        Interface.centralizeWindow(janela)
+        centralizeWindow(janela)
 
-        imgPillow = Image.open('util/bg.gif')
+        imgPillow = Image.open('util/bgVideo.gif')
         img = ImageTk.PhotoImage(imgPillow)
+        frames = [ImageTk.PhotoImage(img.copy().convert('RGBA')) for _ in range(img.n_frames)]
+
         canvas = tk.Canvas(janela, width=img.width(), height=img.height())
-        canvas.pack()
-        canvas.create_image(0, 0, anchor=tk.NW, image=img)
+        canvas.pack(fill="both", expand=True)
 
-        sys.sleep(5)
-        janela.destroy()
-        main()
+        def update_gif():
+            global current_frame
+            canvas.itemconfig(bg_img_id, image=frames[current_frame])
+            janela.after(frame_duration, update_gif)
+            current_frame = (current_frame + 1) % num_frames
+
+        current_frame = 0
+        num_frames = len(frames)
+        frame_duration = img.info['duration']
+
+        bg_img_id = canvas.create_image(0, 0, anchor=tk.NW, image=frames[current_frame])
+        update_gif()
+
+        janela.mainloop()
+
         break
-
-
+        
 
 def main():
     
@@ -110,8 +128,8 @@ def main():
         try:
             #É criado um objeto da classe PlayerClient e chama o método menu()
             client = PlayerClient()
-            # client.inter()
-            client.menu()
+            client.inter()
+            # client.menu()
         except ServerTimedOutException as e:
             #Caso o servidor não responda dentro do tempo limite, o programa é encerrado por timeout
             print("Erro: " + str(e))
@@ -127,3 +145,4 @@ def main():
         input()
 
 loading()
+main()
