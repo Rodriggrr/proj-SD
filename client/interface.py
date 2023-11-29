@@ -1,8 +1,11 @@
+audio = True
 import tkinter as tk
+import threading
 import Classes_pb2
 from PlayerProxy import *
 from PIL import Image, ImageTk
 from google.protobuf.json_format import MessageToJson
+
 
 class Interface:
     proxy = Proxy()
@@ -16,7 +19,6 @@ class Interface:
         janela.geometry('{}x{}+{}+{}'.format(width, height, x, y))
 
     def Janela(self):
-      
         janela = tk.Tk()
         janela.title("Campeonato")
         janela.geometry("690x514")
@@ -33,6 +35,7 @@ class Interface:
         pesquisarTime = tk.Button(janela, text="Pesquisar Time", command=self.pesquisarTime)
         addTime = tk.Button(janela, text="Adicionar Time", command=self.adicionarTime)
         pesquisarTecnico = tk.Button(janela, text="Pesquisar Técnico", command=self.pesquisarTecnico)
+        mute = tk.Button(janela, text="Mute", command=self.mute)
 
         # Place the buttons on top of the image
         pesquisarPlayer.place(x=170, y=100)
@@ -40,6 +43,7 @@ class Interface:
         pesquisarTime.place(x=172, y=240)
         addTime.place(x=400, y=240)
         pesquisarTecnico.place(x=170, y=380)
+        mute.place(x=400, y=380)
 
         janela.mainloop()
       
@@ -263,6 +267,14 @@ class Interface:
             button.place(x=230, y=150)
             label = tk.Label(window, text="")
             label.place(x=210, y=200)
+
+    def mute(self):
+        global audio
+        if audio is True:
+            audio = False
+        else:
+            audio = True
+            
 
 atleta = Classes_pb2.Atleta()
 time = Classes_pb2.Time()

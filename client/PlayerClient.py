@@ -1,13 +1,16 @@
 import time as tm
+from pathlib import Path
+import pygame
 import Classes_pb2
 from PlayerProxy import *
 from interface import *
+
 
 class PlayerClient:
 
     campeonato = Proxy()
 
-    def menu(self):
+    def menu(self): 
         # limpa a tela
         print("\033c")
 
@@ -75,8 +78,25 @@ Digite a Posição:
             self.campeonato.getTecnico(time)
 
     def inter(self):
+        global audio
+        def playSound():
+            global audio
+            clock = pygame.time.Clock()
+
+            while True:
+                pygame.init()
+                pygame.mixer.init()
+                pygame.mixer.music.load('util/hino.mp3')
+                pygame.mixer.music.play()
+                pygame.mixer.music.set_volume(0.5)
+                while pygame.mixer.music.get_busy():
+                    clock.tick(20)
+
+        threading.Thread(target=playSound).start()
+
         interface = Interface()
         interface.Janela()
+        audio = False
 
 atleta = Classes_pb2.Atleta()
 time = Classes_pb2.Time()
