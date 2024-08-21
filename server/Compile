@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo apt install -y protobuf-compiler pkg-config
 g++ -std=c++17 UDPServer.cpp src/Classes.pb.cc -o UDPServer $(pkg-config --cflags --libs protobuf)
 
 # Run ./UDPServer
